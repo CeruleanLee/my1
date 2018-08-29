@@ -12,7 +12,7 @@
     <!--为搜索引擎定义关键词:-->
     <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
     <!--为网页定义描述内容:-->
-    <meta name="description" content="免费 Web & 编程 教程">
+    <meta name="description" content=" 编程">
     <!--定义网页作者:-->
     <meta name="author" content="Runoob">
     <!--每30秒钟刷新当前页面:-->
@@ -24,7 +24,7 @@
     <link rel="shortcup icon" href="//www.runoob.com/html/html-tutorial.html">
     <title>my test</title>
     <!--<base> 标签描述了基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接:--->
-    <base href="http://www.runoob.com/images/" target="_blank">
+    <!--<base href="http://www.runoob.com/images/" target="_blank">-->
     <!--<link> 标签定义了文档与外部资源之间的关系。
     <link> 标签通常用于链接到样式表:--->
     <!--这里属于引用外部样式表  适用于样式需要被应用到多个页面中-->
@@ -67,8 +67,202 @@
     <a href="#" style="color：red;" rel="nofollow">只能使用"内联"方式</a>-->
 </head>
 <body style="background-color: white">
+<a href="https://www.runoob.com/html/html-quicklist.html" style="color: steelblue">速查列表</a>
+<br>
 <br>
 <hr>
+<h4><b>URL</b></h4>
+
+<img src="img/url_explain.png" alt="url_explain.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<hr>
+<h4><b>字符实体</b></h4>
+小于号：&lt;
+<br>
+大于好：&gt;
+<br>
+不间断空格（5）：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;啦啦啦
+<p>音标符</p>
+四声：768
+<br>
+a&#768;
+<br>
+二声 769
+<br>
+a&#769;
+<br>
+三声770
+<br>
+a&#770;
+<br>
+一声771
+<br>
+a&#771;
+<br>
+<p>实体符号参考：</p>
+<img src="img/shitifuhao.png" alt="shitifuhao.png" width="833" height="787">
+<p>
+    <a href="https://www.runoob.com/tags/ref-entities.html" target="_blank" style="text-decoration: none;color: brown;" >实体参考手册</a>
+</p>
+<br>
+<hr>
+<h4><b>Script使用</b></h4>
+<script>
+    document.write("this is script")
+</script>
+<noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
+
+<p>不支持 JavaScript 的浏览器会使用 &lt;noscript&gt; 元素中定义的内容（文本）来替代。</p>
+
+
+
+
+
+<br>
+<hr>
+<h4><b>颜色的使用</b></h4>
+<p>
+    相对于使用rgb(255,255,0)，使用rgba(255,255,0,0.5)可以实现设置颜色透明度的功能，这里的0.5表示透明度，范围0~1。
+
+<p style="background-color:rgb(255,255,0)">
+    通过 rbg 值设置背景颜色
+</p>
+<p style="background-color:rgba(255,255,0,0.25)">
+    通过 rbg 值设置背景颜色
+</p>
+<p style="background-color:rgba(255,255,0,0.5)">
+    通过 rbg 值设置背景颜色
+</p>
+<p style="background-color:rgba(255,255,0,0.75)">
+    通过 rbg 值设置背景颜色
+</p>
+</p>
+
+
+
+<br>
+<hr>
+<h4><b>内联框架 iframe</b></h4>
+<iframe src="img/apk.png" frameborder="0" name="iframe_a" width="100%" height="300">
+
+</iframe>
+<p>
+
+    <a href="https://www.baidu.com" target="iframe_a">百度一下</a>
+</p>
+<p><b>注意：</b> 因为 a 标签的 target 属性是名为 iframe_a 的 iframe 框架，所以在点击链接时页面会显示在 iframe框架中。</p>
+
+<br>
+<hr>
+<h4><b>表单和输入</b></h4>
+<!--表单元素是允许用户在表单中输入内容,比如：文本域(textarea)、
+下拉列表、单选框(radio-buttons)、复选框(checkboxes)等等。-->
+<!--输入标签<input> 输入类型友type定义
+text 文本域  字母，数字等 缺省宽度20字符
+password 密码
+radio 单选
+checkboxes 复选框
+submit 提交按钮
+-->
+<form action="demo-form.php">
+    <p>表单类型演示</p>
+    name:
+    <br>
+    <input type="text" name="name">
+    <br>
+    psd:
+    <br>
+    <input type="password" name="password">
+
+    <p><b>注意：</b> 表单本身不可见，一个文本字段的默认宽度是20个字符</p>
+    sex
+    <br>
+    <!--同一组单选按钮，name取值必须一致才能作为单选按钮-->
+    <input type="radio"name="sex" value="male" checked="checked">male
+    <br>
+    <input type="radio" name="sex" value="female">female
+    <br>
+    sex:
+    <br>
+    <!--预选下拉框 属性值 selected-->
+    <select name="select" id="sex">
+        <option value="male">male</option>
+        <option value="female">female</option>
+        <option value="either" selected>都不是</option>
+    </select>
+    <br>
+    car:
+    <br>
+    <input type="checkbox" name="carchoice" value="Bike">bike
+    <br>
+    <input type="checkbox" name="car" value="car">car
+    <br>
+    备注：
+    <br>
+    <textarea name="mark" id="mark" cols="10" rows="10">请输入</textarea>
+    <br>
+    <!--点击了按钮，数据会提交到服务器 表头的action的服务器里-->
+    <input type="submit" value="submit">
+    <br>
+    <input type="button" value="submit2">
+</form>
+<h4>演示带边框的表单</h4>
+
+<form action="">
+    <!--fieldset 一组相关的表单元素  并且使用外框包起来
+    legend 定义fieldset元素的标题-->
+<fieldset style="width: 500px">
+    <legend>personal info</legend>
+    name:
+    <input type="text"size="30">
+    <br>
+    e-mail:
+    <input type="text" size="30">
+    <br>
+    date:
+    <input type="text" size="10">
+</fieldset>
+
+
+</form>
+<h4>发送邮件给somebody</h4>
+<form action="MAILTO:2269985808@qq.com" method="post" enctype="text/plain">
+    name:
+    <br>
+    <input type="text" name="name" value="your name">
+    <br>
+    e-mail:
+    <br>
+    <input type="email" name="mail" value="your mail">
+    <br>
+    comment:
+    <br>
+    <input type="text" name="comment" value="your text" size="50">
+    <br>
+    <br>
+    <input type="submit" value="发送">
+    <input type="reset" value="重置">
+
+
+
+</form>
+<!--**********************************************************************************-->
+<br>
+<hr style="height: 1px;border:none;border-top: 2px dotted#eeeeee;">
 <p><b>区块 div</b></p>
 <pre>
     大多数 HTML 元素被定义为块级元素或内联元素。
@@ -78,7 +272,63 @@
 &lt;span&gt;	用来组合文档中的行内元素， 内联元素(inline)
 
 </pre>
+<p>区域举个栗子</p>
+<div id="container" style="width: 500px">
+    <div id="header" style="background-color: lightblue">
+        <h1 style="margin-bottom: 0px">网页标题</h1>
 
+    </div>
+    <div style="background-color: darkcyan;height: 200px;width: 100px;float: left">
+        <b>菜单</b>
+        <br>
+        <b>HTML</b>
+        <br>
+        <b>java</b>
+    </div>
+    <div id="content" style="background-color: aquamarine;height: 200px;width: 400px;float:left;">
+        内容
+    </div>
+    <div id="footer" style="background-color: steelblue;clear: both;text-align: center">
+        author@cerulean
+    </div>
+</div>
+<br>
+<p>同款使用tablel来做</p>
+<table width="500" border="0" style="text-align: start">
+
+    <tr>
+        <td colspan="2" style="background-color: aqua;">
+            <p>标题</p>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td style="background-color: darkcyan;width: 200px;text-align: start;vertical-align: top;horiz-align: left">
+            <ul>
+                <li>菜单</li>
+                <li>html</li>
+                <li>java</li>
+            </ul>
+        </td>
+        <td style="width: 300px;height: 200px;background-color: lightblue;vertical-align: top">
+            内容
+        </td>
+    </tr>
+
+
+    <tr>
+        <td style="background-color: steelblue;text-align: center" colspan="2">
+            author@ce
+        </td>
+    </tr>
+
+
+</table>
+
+<br>
+
+<!--**********************************************************************************-->
 
 <br>
 <hr>
@@ -228,6 +478,8 @@
 
 
 </table>
+<!--**********************************************************************************-->
+
 <br>
 <hr>
 <p>表格</p>
@@ -465,9 +717,10 @@
         <td>语文</td>
     </tr>
 </table>
+<!--**********************************************************************************-->
+
 <br>
 <hr>
-
 <p style="text-align: center">图像的插入</p>
 <p>
     一个图像:
@@ -518,6 +771,7 @@
 
     </map>
 </p>
+<!--**********************************************************************************-->
 
 <br>
 <hr>
