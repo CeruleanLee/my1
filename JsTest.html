@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test 5</title>
+    <style>
+        h4 {
+            text-align: center;
+            color: darkslategrey;
+        }
+    </style>
+    <script src="js/testjs.js"></script>
+
+    <script>
+        function mydemoclick() {
+            document.getElementById("demo").innerHTML = "这是一个函数";
+        }
+
+        function afterAllClick() {
+            document.write(Date());
+
+        }
+    </script>
+</head>
+<body>
+<p>DOM (Document Object Model)（文档对象模型）是用于访问 HTML 元素的正式 W3C 标准。</p>
+<p>HTML 中的脚本必须位于 &lt;script&gt; 与 &lt;/script&gt; 标签之间。
+    <br>
+    脚本可被放置在 HTML 页面的 &lt;body&gt; 和 &lt;head&gt; 部分中。</p>
+
+<p>js直接写入输出流：</p>
+<script>
+    document.write("<h2>this is a title</h2>")
+    document.write("<p>this is a paragraph</p>")
+</script>
+<p>
+    <b>注意：</b>
+    您只能在 HTML 输出流中使用 <strong>document.write</strong>。
+    如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
+</p>
+<p>nnerHTML则是DOM页面元素的一个属性，代表该元素的html内容。你可以精确到某一个具体的元素来进行更改。如果想修改document的内容，则需要修改document.documentElement.innerElement。
+    <b>innerHTML很多情况下都优于document.write</b>
+    ，其原因在于其允许更精确的控制要刷新页面的那一个部分。</p>
+<br>
+<hr>
+<h4>dmmo</h4>
+<p id="demo">this is some text </p>
+<button type="button" onclick="buttonclick()"> click me</button>
+<br>
+<br>
+<hr>
+<h4>输出方式</h4>
+<ol>
+
+
+    <li>
+        使用 window.alert() 弹出警告框。
+    </li>
+    <li>
+        使用 document.write() 方法将内容写到 HTML 文档中。
+    </li>
+    <li> 使用 innerHTML 写入到 HTML 元素。</li>
+    <LI> 使用 console.log() 写入到浏览器的控制台。
+    </LI>
+</ol>
+<script>
+    // window.alert(1+1);
+    document.write(Date());
+</script>
+<p>
+    请使用 document.write() 仅仅向文档输出写内容。
+    <br>
+    如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖。eg：</p>
+
+<button type="button" onclick="afterAllClick()">click me</button>
+<br>
+<script>
+    a = 4;
+    b = 9;
+    c = a * b;
+    console.log(c);
+</script>
+<p id="number">here will show some number</p>
+<script>
+    /*123e5就是123乘以10的5次方。*/
+    var a = 123e5;
+    document.getElementById("number").innerHTML = a;
+    document.write("我是 \
+换行");
+
+
+</script>
+<br>
+tips: 大小写敏感 会忽略多余的空格 折行使用反折线\
+<br>
+语句标识符：
+<br>
+<img src="img/js_biaoshifu.png" alt="biaoshifu.png" width="773" height="687">
+<br>
+<br>
+<hr>
+<h4>变量和数据格式</h4>
+<ol>
+    <li>
+        <p>大小写敏感</p>
+
+    </li>
+    <li>
+        一条声明语句可以声明多个变量 var a=123,b="123",c="haha"; 可换行，但是不能赋同一个值，eg:
+        var x,y,z=1;这样写只有z是1，其它都是undefine;
+    </li>
+    <li>如果重新声明 JavaScript 变量，该变量的值不会丢失：
+        <br>
+        在以下两条语句执行后，变量 carname 的值依然是 "Volvo"：
+        <br>
+        var carname="Volvo";
+        <br>
+        var carname;
+    </li>
+    <li>
+        Js数据类型
+        -->字符串（String）、数字(Number)、布尔(Boolean)、数组(Array)、对象(Object)、空（Null）、未定义（Undefined）。
+    </li>
+    <li>动态类型，意味着相同的变量可用作不同的类型，eg var x; var x=5;var x="5"</li>
+    <li>字符串-> "name is 'jhon'" / 'name is "jhon"'</li>
+    <li>
+        <p>数字 小数点不限制 极大和极小数可以使用科学计数法来写
+            <br>
+            var y=123e5; // 12300000
+            <br>
+            var z=123e-5; // 0.00123
+        </p>
+    </li>
+    <li>undefined 和 null
+        <p>
+            Undefined 这个值表示变量不含有值。
+            <br>
+            可以通过将变量的值设置为 null 来清空变量。
+            <br>
+            实例
+            <br>
+            cars=null;
+            person=null;</p></li>
+    <li>声明变量类型
+        <P>
+            当您声明新变量时，可以使用关键词 "new" 来声明其类型：
+
+        </P>
+        <pre>
+            var carname=new String;
+            var x=      new Number;
+            var y=      new Boolean;
+            var cars=   new Array;
+            var person= new Object;
+            lamp	JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象。
+</pre>
+    </li>
+</ol>
+<script>
+    var person;
+    var car = "Volvo";
+    document.write(person + "<br>");
+    document.write(car + "<br>");
+    var car = null
+    document.write(car + "<br>");
+</script>
+</body>
+</html>

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>test 4</title>
-    <link rel="stylesheet" type="text/css" href="css/cssTest.css">
     <style>
         #para {
             text-align: center;
@@ -24,7 +23,72 @@
             color: chocolate;
         }
 
+        p.uppercase {
+            text-transform: uppercase;
+        }
+
+        p.lowercase {
+            text-transform: lowercase;
+        }
+
+        p.capitalize {
+            text-transform: capitalize;
+        }
+
+        .divcenter {
+            text-align: center;
+        }
+
+        .divcenter2 {
+            border: 1px solid gold;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            text-align: center;
+            background-color: lightcoral;
+            padding: 8px;
+        }
+
+        p.norap {
+            white-space: nowrap;
+            letter-spacing: 6px;
+        }
+
+        img.top {
+            vertical-align: text-top;
+        }
+
+        img.bottom {
+            vertical-align: text-bottom;
+        }
+
+        /*background-attachment  */
+        body {
+            margin-left: auto;
+            background: #5d9ab2 url('img/icon.png') no-repeat left top;
+            background-attachment: inherit;
+        }
+
+        p.serif {
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        p.sansserif {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        p.italic {
+            font-style: italic;
+            font-size: 20px;
+        }
+
+        p.oblique {
+            font-style: oblique;
+        }
     </style>
+    <!--放置的位置不同 背景颜色不同  后面的会覆盖写在前面的-->
+    <link rel="stylesheet" type="text/css" href="css/cssTest.css">
+
 </head>
 <body>
 <br>
@@ -47,12 +111,320 @@ class 选择器在HTML中以class属性表示, 在 CSS 中，类选择器以一�
 在以下实例中, 所有的 p 元素使用 class="center" 让该元素的文本居中:
 </pre>
 <h5>no effect</h5>
-<p class="pcenter">this is different </p>
 
+<p class="pcenter">this is different </p>
+<h5 class="pcenter">copy from above </h5>
 <br>
 <br>
 <hr>
 <h4>样式表 ①内部②外部③内联</h4>
+<p>1.外部样式表，使用link标签连接到外部样式表，此标签写在文档头部</p>
+<p>2.内部样式表，卸载文档内部，用style在文档头部定义</p>
+<p>3.内联样式，当样式仅需要在一个元素上使用一次的时候使用，就是在相关的标签内部使用样式style属性，以下举个栗子</p>
+<p style="color: deeppink;margin-left: 50px">this is different p</p>
+<p>4.多重样式，如果某些属性在不同的样式表中被同样的选择器定义，那么属性值将从更具体的样式表中被继承过来。
+</p>
+<pre>
+    例如：
+    外部样式表拥有针对 h3 选择器的三个属性：
 
+h3
+{
+    color:red;
+    text-align:left;
+    font-size:8pt;
+}
+    而内部样式表拥有针对 h3 选择器的两个属性：
+
+h3
+{
+    text-align:right;
+    font-size:20pt;
+}
+假如拥有内部样式表的这个页面同时与外部样式表链接，那么 h3 得到的样式是：
+
+color:red;
+text-align:right;
+font-size:20pt;
+即颜色属性将被继承于外部样式表，而文字排列（text-alignment）和字体尺寸（font-size）会被内部样式表中的规则取代。
+
+</pre>
+<p>多重样式，可以引入多个样式表，优先级问题：
+</p>
+<p>内联样式）Inline style > （内部样式）Internal style sheet >（外部样式）External style sheet > 浏览器默认样式</p>
+<p><b>注意：</b>所处的位置顺序也很重要，举个栗子：</p>
+
+<pre>
+   &lt;head&gt;
+    <!-- 外部样式 style.css -->
+    &lt;link rel="stylesheet" type="text/css" href="style.css"/&gt;
+    <!-- 设置：h3{color:blue;} -->
+    &lt;style type="text/css"&gt;
+      /* 内部样式 */
+      h3{color:green;}
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h3&gt;测试！&lt;/h3&gt;
+&lt;/body&gt;
+</pre>
+<p><b>以上，</b>如果外部样式放在内部样式的后面，则外部样式将覆盖内部样式。</p>
+
+<br>
+<hr>
+<h4>background</h4>
+
+
+<p>CSS 属性定义背景效果:</p>
+<ul>
+    <li>background-color(三种方式)</li>
+    <ul>
+        <li> 十六进制 - 如："#ff0000"</li>
+        <li>RGB - 如："rgb(255,0,0)"</li>
+        <li> 颜色名称 - 如："red"</li>
+    </ul>
+    <li>background-image
+        <ul>
+            <li>背景图像进行平铺重复显示，以覆盖整个元素实体.</li>
+            <LI>
+                实例：body {background-image:url('paper.gif');}
+            </LI>
+        </ul>
+    </li>
+    <li>background-repeat
+        <ul>
+            <li>默认情况下 background-image 属性会在页面的水平或者垂直方向平铺。</li>
+            <li>水平方向平铺 (repeat-x)</li>
+            <li>不平铺：no-repeat</li>
+        </ul>
+    </li>
+    <li>background-attachment
+        <ul>
+            <li>scroll 默认值。背景图像会随着页面其余部分的滚动而移动。</li>
+            <li>fixed 固定</li>
+            <li>inherit 规定应该从父元素继承 background-attachment 属性的设置。</li>
+        </ul>
+    </li>
+    <li>background-position（设置定位，使排版更合理）
+        <ul>
+            <li>
+                右上 right top
+            </li>
+        </ul>
+    </li>
+</ul>
+<div style="background-image: url('img/icon.png');background-position: right top;
+margin-right: 20px;background-repeat: no-repeat;width: 300px;height: 100px">
+
+    <p>背景图片不重复且有position</p>
+
+
+</div>
+<p>简写属性，以上的属性可以合并在一个“backgroung”的属性中</p>
+<div style="background: #589585 url('img/icon.png')  right top no-repeat;
+margin-right: 20px;width: 400px;height: 100px">
+
+    <p>背景图片不重复且有position 简写版</p>
+
+
+</div>
+<pre>------------------</pre>
+
+<div class="divcenter">
+
+    <div class="divcenter2">
+        <p>多重嵌套举例</p>
+
+    </div>
+
+</div>
+<br>
+<hr>
+<h4>文本</h4>
+<p style="color: chocolate">this is test color</p>
+<ol>
+    <li>
+        颜色
+        <ul>
+            <li>
+                使用style->color属性来设置 三种 rgb 十六进制 颜色名称
+            </li>
+            <li>对于W3C标准的CSS：如果你定义了颜色属性，你还必须定义背景色属性。</li>
+        </ul>
+    </li>
+    <li>对齐方式
+        <ul>
+            <li>style-> text-align (center-居中对齐；left-左对齐；justify-两端对齐)</li>
+        </ul>
+    </li>
+    <li>text-decoration 文本修饰
+        <ul>
+            <li>
+                text-decoration属性主要是用来删除链接的下划线：
+                <a href="https://www.baidu.com" style="text-decoration: none">now baidu yi xia</a>
+            </li>
+            <li>overline
+                <a href="https://www.baidu.com" style="text-decoration: overline">now baidu yi xia</a>
+            </li>
+            <li>line-through
+                <a href="https://www.baidu.com" style="text-decoration: line-through">now baidu yi xia</a>
+            </li>
+            <li>underline
+                <a href="https://www.baidu.com" style="text-decoration: underline">now baidu yi xia</a>
+            </li>
+        </ul>
+    </li>
+    <li>text-transform 文本转换
+        <ul>
+            <li>uppercase 转大写
+                <p class="uppercase">this is smoe text</p></li>
+            <li>lowercase 转小写
+                <p class="lowercase">this is smoe text</p></li>
+            <li>capitalize 首字母大写
+                <p class="capitalize">this is smoe text</p></li>
+        </ul>
+    </li>
+    <li>text-indent 文本第一行的缩进</li>
+    <ul>
+        <li>
+            <p style="text-indent: 50px">this is some text</p>
+        </li>
+    </ul>
+    <li>
+        letter-spacing 字符间距 px单位
+        <ul>
+            <li>在使用在英文上时，设置的是字母与字母间的间距，如果要设置单词与单词键的间距，可以使用word-spacing</li>
+        </ul>
+    </li>
+    <li>
+        line-height 行间距
+        <ul>
+            <li>大多数浏览器的默认行高约为110%至120%</li>
+            <li>
+                <p style="line-height: 70%">this is some text</p>
+                <p style="line-height: 70%">this is some text</p>
+                <p style="line-height: 70%">this is some text</p>
+                <br>
+                <br>
+                <p style="line-height: 200%">this is some text</p>
+                <p style="line-height: 200%">this is some text</p>
+                <p style="line-height: 200%">this is some text</p>
+                <p style="line-height: 200%">this is some text</p>
+
+            </li>
+        </ul>
+    </li>
+    <li>direction:rtl 文本方向 默认ltr</li>
+    <li>word-spacing:30px 单词间隙</li>
+    <li>white-space:nowrap 元素内禁用文字环绕
+        <p class="norap">this is some text no br,this is some text no br,this is some text no br,this is some text no
+            br,this is some text no br,this is some text no brthis is some text no brthis is some text no br</p>
+    </li>
+    <li>vertical-align 垂直对齐图片
+        <div>
+            <p>一个<img src="img/icon.png" alt="icon.png" width="48" height="48"/> 默认对齐的图像。</p>
+            <p>一个<img src="img/icon.png" alt="icon.png" class="top" width="48" height="48"/> text-top 对齐的图像。</p>
+            <p>一个<img src="img/icon.png" alt="icon.png" class="bottom" width="48" height="48"/> text-bottom 对齐的图像。</p>
+        </div>
+    </li>
+    <li>text-shadow 文本阴影
+        <!--向右偏离的距离   向下偏离的距离-->
+        <p style="text-shadow:2px 5px #5d9ab2"> this is some text </p>
+        <p><b>注意：</b> Internet Explorer 9 以及更早的浏览器不支持 text-shadow 属性。</p>
+
+    </li>
+</ol>
+<img src="img/css_textcss.png" alt="textcss.png" width="847" height="613">
+<br>
+<br>
+<hr>
+<h4>字体</h4>
+<ol>
+    <li>字型：①Serif Serif字体中字符在行的末端拥有额外的装饰
+        ②Sans-serif "Sans"是指无 - 这些字体在末端没有额外的装饰
+        ③Monospace 所有的等宽字符具有相同的宽度
+    </li>
+    <li>font-family
+        <ul>
+            <li>
+                后备机制：当浏览器不支持一种字体的时候去用下一种字体
+            </li>
+            <li>注意: 如果字体系列的名称超过一个字，它必须用引号，如Font Family："宋体"。
+
+                多个字体系列是用一个逗号分隔指明
+            </li>
+        </ul>
+    </li>
+    <li>font-style 文字样式
+        <ul>
+            <li>
+                normal-正常
+            </li>
+            <li>italic-斜体</li>
+            <li>oblique-文字向一边倾斜，但不太支持</li>
+        </ul>
+    </li>
+    <li>font-size 大小
+        <ul>
+            <li>
+            <pre>
+                字体大小的值可以是绝对或相对的大小。
+                绝对大小：设置一个指定大小的文本 不允许用户在所有浏览器中改变文本大小 确定了输出的物理尺寸时绝对大小很有用
+                相对大小：
+                相对于周围的元素来设置大小 允许用户在浏览器中改变文字大小
+                <p>
+                    <b>Remark</b>如果你不指定一个字体的大小，默认大小和普通文本段落一样，是16像素（16px=1em）。
+
+                </p>
+            </pre>
+            </li>
+            <li>
+                <pre>
+                    为了避免Internet Explorer 中无法调整文本的问题，许多开发者使用 em 单位代替像素。
+                    em的尺寸单位由W3C建议。
+                    1em和当前字体大小相等。在浏览器中默认的文字大小是16px。
+                    因此，1em的默认大小是16px。可以通过下面这个公式将像素转换为em：px/16=em
+                    h1 {font-size:2.5em;} /* 40px/16=2.5em */
+                    h2 {font-size:1.875em;} /* 30px/16=1.875em */
+                    p {font-size:0.875em;} /* 14px/16=0.875em */
+                </pre>
+                <p>使用 em 单位，允许在所有浏览器中调整文本大小。
+                    不幸的是，仍然是IE浏览器的问题。调整文本的大小时，会比正常的尺寸更大或更小。
+                </p>
+            </li>
+            <li>
+                在所有浏览器的解决方案中，设置 &lt;body&gt;元素的默认字体大小的是百分比：
+            </li>
+        </ul>
+    </li>
+    <li>font-weight 字体加粗
+        <ul>
+            <li style="font-weight: normal">
+                normal
+
+            </li>
+            <li style="font-weight: lighter">
+                lighter
+            </li>
+            <LI style="font-weight: bold">bold</LI>
+            <li style="font-weight: 900">自定义数字</li>
+        </ul>
+    </li>
+    <li>font-variant 字体转变
+        <ul>
+            <li style="font-variant: normal">
+                normal
+            </li>
+            <li style="font-variant: small-caps">
+                Small Caps
+            </li>
+        </ul>
+    </li>
+    <li style="font: 15px italic lighter Sans-serif,'宋体'  ">可以在font 属性中一次声明全部相关属性</li>
+</ol>
+
+<p class="italic">this is some text italic</p>
+<p class="oblique">this is some text oblique</p>
+<img src="img/css_fontcss.png" alt="fontcss.png" width="756" height="323">
 </body>
 </html>
