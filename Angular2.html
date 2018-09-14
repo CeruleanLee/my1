@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo2</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+        input.ng-invalid{
+            background-color: lightblue;
+        }
+
+
+    </style>
+</head>
+<body>
+<form ng-app="" name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text" ng-init="myText= '123456@qq.com'">
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+    <p>ng-model 可以为应用数据提供状态值</p>
+    Email2: <input type="email" name="adress" ng-model="myText" required>
+    <h5>状态：</h5>
+    {{myForm.adress.$valid}}
+    {{myForm.adress.$dirty}}
+    {{myForm.adress.$touched}}
+
+    <br>
+    <br>
+    <br>
+    <hr>
+    输入anything:
+    <input type="text" name="mytext" ng-model="text" required>
+
+</form>
+
+<p>在输入框中输入你的邮箱地址，如果不是一个合法的邮箱地址，会弹出提示信息。</p>
+<p>ng-show 会在属性返回true的情况下显示</p>
+<pre>ng-model 指令根据表单域的状态添加/移除以下类：
+ng-invalid:未通过验证的表单
+
+ng-valid:布尔型属性，它指示表单是否通过验证。如果表单当前通过验证，他将为true
+
+ng-dirty:布尔值属性，表示用户是否修改了表单。如果为 ture，表示有修改过；false 表示修没有修改过
+
+ng-touched:布尔值属性，表示用户是否和控件进行过交互
+
+ng-pristine:布尔值属性，表示用户是否修改了表单。如果为ture，表示没有修改过；false表示修改过
+<hr>
+ng-valid: 验证通过
+ng-invalid: 验证失败
+ng-valid-[key]: 由$setValidity添加的所有验证通过的值
+ng-invalid-[key]: 由$setValidity添加的所有验证失败的值
+ng-pristine: 控件为初始状态
+ng-dirty: 控件输入值已变更
+ng-touched: 控件已失去焦点
+ng-untouched: 控件未失去焦点
+ng-pending: 任何为满足$asyncValidators的情况
+</pre>
+
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<p>方便开发单一页面的应用程序</p>
+<p>ng-app 定义了一个ajs应用程序</p>
+<p>ng-model 把元素值 比如输入域的值绑定到应用程序</p>
+<p>ng-bind 把应用程序数据绑定到html视图</p>
+<p>{{name}}是通过ng-model="name"进行同步的</p>
+<p>ng-repeat 重复一个html元素</p>
+<p><b>自定义指令</b></p>
+<p>使用.directive 来添加自定义指令 <br>调用时 html元素上添加自定义指令名 <br>
+    命名一个指令 runobjDirective 使用时以'-'分割：runobj-directive <br>
+<ul> 使用限制：
+    <li>通过 <strong>restrict</strong>属性，并设置为A, 来设置指令只能通过属性的方式来调用
+
+    </li>
+</ul>
+
+</p>
+<br>
+<HR>
+<hr>
+<!--div 是应用程序的所有者-->
+<div ng-app="myApp" ng-init="person={name:'hong',age:'10'};
+points=[1,15,19,2,40];girl=[{name:'a',age:1},{name:'b',age:3},{name:'c',age:8}];
+restrictList=[{name:'A',use:'作为属性使用'},
+{name:'E',use:'作为元素名使用'},{name:'C',use:'作为类名使用'},{name:'M',use:' 作为注释使用'}]" ng-controller="myCtrl">
+    <P>名字：<input type="text" ng-model="name"></P>
+    <!--双向绑定-->
+    <h2>this is my name:{{name}}</h2>
+    <p>姓名为 <span ng-bind="firstName"></span></p>
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName + " " + lastName}}
+    <p>使用bind- <span ng-bind="firstName+'  '+lastName"></span></p>
+    <p>{{person.name}}</p>
+    <p>name为 <span ng-bind="person.name"></span></p>
+    <p>第三个值为 {{ points[2] }}</p>
+    <p>演示使用ng-repeat来循环数组</p>
+    <ul>
+        <li ng-repeat="x in points">{{x}}</li>
+    </ul>
+    <p>在对象数组上使用</p>
+    <ul>
+        <li ng-repeat="x in girl">
+            {{x.name+'-'+x.age}}
+        </li>
+    </ul>
+
+    <runobj-directive></runobj-directive>
+    <justa-directive></justa-directive>
+    <div justa-directive></div>
+    <ul>restrict值：<li ng-repeat="x in restrictList">
+        {{x.name+' '+x.use}}
+    </li>
+    <li>
+        默认值为 EA, 即可以通过元素名和属性名来调用指令。
+    </li></ul>
+
+    <br>
+    <br>
+    <p>验证输入</p>
+    
+    
+    
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+    });
+    app.directive("runobjDirective", function () {
+        return {
+            template: "<p>i am a directive</p>"
+        };
+    });
+    app.directive("justaDirective", function () {
+        return {
+            restrict: "A",
+            template: "<p>i am  directive2</p>"
+        };
+    });
+</script>
+<br>
+<hr>
+<p>指令</p>
+<p>以ng 开头的html属性</p>
+<p>ng-init 初始化agjs 应用程序变量</p>
+
+<hr>
+<p>h5 允许扩展自治属性 以data-开头 在agjs中，使用data-ng 让网页对html5有效</p>
+<p>表达式：
+</p>
+<p>表达式写在双大括号里 {{1+2}}} 可以包含文字 运算符和变量</p>
+<hr>
+agjs 模块（module）定义了agjs 应用 ng-app指明了应用
+<br>
+controller 用于控制应用 ng-controller 指明控制器
+
+<div ng-app="my" ng-controller="myctrl">
+    first: <input type="text" ng-model="first"><br>
+    sec: <input type="text" ng-model="sec"><br>
+    sum: {{first+"-"+sec}}
+</div>
+
+<script>
+    var app = angular.module("my", []);
+    app.controller("myctrl", function ($scope) {
+        $scope.first = "1";
+        $scope.sec = "8";
+    });
+</script>
+<br>
+<BR>
+<br>
+<!--<div ng-app="myApp" ng-controller="myCtrl">-->
+
+<!--名: <input type="text" ng-model="firstName"><br>-->
+<!--姓: <input type="text" ng-model="lastName"><br>-->
+<!--<br>-->
+<!--姓名: {{firstName + " " + lastName}}-->
+
+<!--</div>-->
+
+
+<br>
+<p>对象 -与js对象同</p>
+<p>数组 -与js数组同</p>
+
+
+</body>
+</html>

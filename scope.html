@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="js/scope.js"></script>
+    <style>
+        h4 {
+            font-size: x-large;
+            color: cornflowerblue;
+        }
+        p {
+            color: seagreen;
+        }
+    </style>
+</head>
+<body ng-app="my">
+<h4> Scope</h4>
+<pre>
+Scope(作用域) 是应用在 HTML (视图) 和 JavaScript (控制器)之间的纽带。
+Scope 是一个对象，有可用的方法和属性。
+Scope 可应用在视图和控制器上。
+</pre>
+<div ng-controller="mycontroller">
+    <p>{{name}}</p>
+</div>
+<p ng-controller="mycontroller">
+    当在控制器中添加 $scope 对象时，视图 (HTML) 可以获取了这些属性。
+    视图中，你不需要添加 $scope 前缀, 只需要添加属性名即可，如： {{name}}。
+</p>
+
+<pre>
+AngularJS 应用组成如下：
+
+View(视图), 即 HTML。
+Model(模型), 当前视图中可用的数据。
+Controller(控制器), 即 JavaScript 函数，可以添加或修改属性。
+<Strong>scope 是模型</Strong>
+
+scope 是一个 JavaScript 对象，带有属性和方法，这些属性和方法可以在视图和控制器中使用。
+</pre>
+
+<div ng-controller="ctrl2">
+    <input type="text" ng-model="name2">
+    <h6>{{greeting}}</h6>
+    <button ng-click="sayHi()">click me</button>
+</div>
+
+<h4>作用域</h4>
+<p>举个栗子</p>
+<ul ng-controller="ctrl3">
+    <li ng-repeat="x in list">
+        {{x}}
+    </li>
+</ul>
+<h4>根作用域 $rootscope</h4>
+作用在ng-app指令包含的所有html元素中
+<br>
+是各个controller的桥梁，用跟作用域定义的值，可以在各个controller中使用
+
+<br>
+<p>举个栗子</p>
+
+<ul ng-controller="ctrl4">家族：{{$root.genName}}
+    <li ng-repeat="x in nameList">
+        {{x}}
+    </li>
+</ul>
+
+<p><strong>注：</strong> 子作用域之间无法相互访问</p>
+<p>举个栗子</p>
+
+
+
+
+
+</body>
+</html>
