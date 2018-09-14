@@ -576,6 +576,66 @@ myObject = myFunction.apply(myObject, myArray);  // 返回 20
 
 Note	通过 call() 或 apply() 方法你可以设置 this 的值, 且作为已存在对象的新方法调用。
 </pre>
+
+<br><br>
+<hr>
+<h4>计数器demo1</h4>
+<!--闭包其实是利用了一个变量退出作用域的时候，暂时没有被销毁，它的值还在，如果后面有变量也叫这个名字，那这个数据会被重新利用起来。你会发现，后面你使用的这个名字一样的变量是有初值的。下面的例子可以看出问题来。-->
+<p>局部变量计数。</p>
+<button type="button" onclick="myFunction()">计数!</button>
+<p id="demo8">0</p>
+<script>
+    {
+        var tmp = 2; //理论上在退出语句块后，这个变量要被释放掉的。包括内存可能被回收。但事实并非如此，会影响后面和他同名的变量
+    }
+
+    var add = (function () {
+        //var counter = 0; //这里注释掉.其实和上面的tmp一样的道理。这里在函数自己执行完后就应该销毁了的。
+        //return function () {return counter  += 1;} //这里的counter已经不是上面的counter了，是一个全局变量。有初值，受上面影响，初值为0
+        return function () {return tmp += 1;} //这里tmp就是个全局变量。它是有初值的。为上面的2
+
+    })();
+    function myFunction(){
+        document.getElementById("demo8").innerHTML = add();//3
+        // document.getElementById("demo8").innerHTML = add();//4
+        // document.getElementById("demo8").innerHTML = add(); //5
+    }
+
+</script>
+<!--执行上面的代码可以看的很清楚。计数器一样正常工作。
+
+所以，闭包就是利用了个bug: 退出作用域的变量不会立即销毁。会影响后面的同名变量。
+
+但不知道后面的javascript版本会不会修改这种机制。
+
+所以代码这么写是不可靠的。太依赖于javascript的内部实现了。
+
+其实要实现全局计数器的需求。正常的做法是:
+
+定义一个全局对象。这个对象定义自己的属性和方法add。
+
+用的时候 对象.add 就可以了。这个才正常。
+
+上面用闭包的方式太过巧妙，给人的感觉就是在夹缝中求生存。-->
+<br><br><br><br>
+<h4>demo2</h4>
+<button type="button" onclick="myFunction()">计数!</button>
+<p id="demo9">0</p>
+<script>
+    var add = new Object();
+    add.count = 0;
+    add.plus = function()
+    {
+        this.count++;
+    }
+    function myFunction(){
+        add.plus();
+        document.getElementById("demo9").innerHTML = add.count;
+    }
+</script>
+
+
+
 </body>
 
 </html>
