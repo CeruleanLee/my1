@@ -10,6 +10,7 @@
             font-size: x-large;
             color: cornflowerblue;
         }
+
         p {
             color: seagreen;
         }
@@ -21,6 +22,9 @@
 Scope(作用域) 是应用在 HTML (视图) 和 JavaScript (控制器)之间的纽带。
 Scope 是一个对象，有可用的方法和属性。
 Scope 可应用在视图和控制器上。
+    说明: scope 是一个js函数，相当于是作用域、控制范围，被用保存ajs modeld的对象，被使用来调用控制器，
+
+
 </pre>
 <div ng-controller="mycontroller">
     <p>{{name}}</p>
@@ -70,10 +74,145 @@ scope 是一个 JavaScript 对象，带有属性和方法，这些属性和方�
 
 <p><strong>注：</strong> 子作用域之间无法相互访问</p>
 <p>举个栗子</p>
+<p>不举了 下个栗子</p>
+<div ng-controller="ctrl5">
+    <ul>
+        <li ng-repeat="x in nameList track by $index "> {{x.name}}.{{$root.genName}} - {{x.country}}
+            <button ng-click="deletePerson($index)"> delete</button>
+        </li>
+    </ul>
+    <p>添加： <input type="text" ng-model="name" placeholder="请输入"></p>
+    <br>
+    <button ng-click="addPerson(name)"> confirm
+    </button>
+</div>
+<br>
+<BR>
+<HR>
+<h4> 过滤器</h4>
+
+<ul ng-controller="ctrl6-filter">
+    <li ng-repeat=" x in nameList">{{x.name}} --- {{x.explain}}</li>
+</ul>
+<p ng-cotroller="ctrl4"> {{$root.genName|lowercase}}</p>
+
+<div ng-controller="ctrl7-filter2">
+    <p>数量： <input type="text" ng-model="num"></p>
+    <p>价格： <input type="text" ng-model="price"></p>
+    <p>总价: {{num*price|currency}}</p>
+</div>
 
 
+<div ng-controller="ctrl5">
+    <ul>在指令中添加过滤
+        <li ng-repeat="x in nameList|orderBy:'name'">{{x.name+"-"+x.country}}</li>
+    </ul>
+    <br>
+    <p>输入筛选器 <input type="text" ng-model="testFilter"></p>
+    <ul>
+        <li ng-repeat="x in nameList|filter:testFilter|orderBy:'name'">{{(x.name|uppercase)+"-"+x.country}}</li>
+    </ul>
+</div>
+
+<p ng-controller="ctrl8-filter3-self">{{text}}自定义反转：{{text|reverse}}</p>
+
+<div ng-controller="ctrl5">
+    <p>栗子：</p>
+    <p>日期格式化： {{1537167298000|date:"yyyy-MM-dd HH:mm:ss"}}</p>
+    <p>保留两位小数： {{3.14152698|number:2}}</p>
+    <p>货币格式化： {{3.14152698|currency}}</p>
+    <p>货币格式化： {{3.14152698|currency:"RMB ￥"}}</p>
+    <p>截取： {{3.14152698|limitTo:3}}</p>
+    <!--从后面开始截取-->
+    <p>截取： {{3.14152698|limitTo:-3}}</p>
+    <ul>
+        <!--true  降序排列-->
+        <li ng-repeat="x in ageList|orderBy:'age':true">{{x.age+","+x.id}}
+
+        </li>
+    </ul>
+    <ul style="color: chocolate">
+        <!--  -age 也可以  降序排列-->
+        <li ng-repeat="x in ageList|orderBy:'-age'">{{x.age+","+x.id}}
+
+        </li>
+    </ul>
+</div>
+<p ng-controller="ctrl9">{{formatDate}}</p>
+<div style="height: 50px"></div>
+
+<hr>
+<h4>Service </h4>
+<li>$location 服务，它可以返回当前页面的 URL 地址</li>
+<p><strong>注意：</strong> $location 服务是作为一个参数传递到 controller 中。如果要使用它，需要在 controller 中定义。</p>
+<p>举个栗子</p>
+<p ng-controller="ctrl-Service10">{{myUrl}}</p>
+<p>tips</p>
+<pre>
+   <Strong>
+为什么使用服务?
+   </Strong>
+在很多服务中，比如 $location 服务，它可以使用 DOM 中存在的对象，类似 window.location 对象，但 window.location 对象在 AngularJS 应用中有一定的局限性。
+AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $location 服务比使用 window.location 对象更好。
+</pre>
+
+<li>$http 服务   （服务向服务器发送请求，应用响应服务器传送过来的数据。）</li>
+<div ng-controller="ctrl-Service11">
+    <p>成功信息：{{successData}}</p>
+    <p>失败信息：{{errorData}}</p>
+
+</div>
+<div ng-controller="ctrl-Service12">
 
 
+    <ul>get List:
+        <li ng-repeat="x in successData2">{{x.Country}}</li>
+    </ul>
+    <!--<p>成功信息：{{successData2}}</p>-->
+    <!--<p>失败信息：{{errorData2}}</p>-->
+
+</div>
+<li>$timeout 服务  访问在规定的毫秒数后执行指定函数</li>
+<p ng-controller="ctrl-timeout13">{{hello}}</p>
+
+
+<li>$interval 访问在指定的周期(以毫秒计)来调用函数或计算表达式</li>
+<p ng-controller="ctrl-interval14">nowTime: {{nowtime}}</p>
+
+<li>自定义服务  </li>
+<br>
+使用自定义服务，需要在定义控制器的时候独立添加，设置依赖关系
+<p>举个栗子</p>
+<p ng-controller="ctrl-self15">255 的16进制是：{{hex}}</p>
+
+<p> <strong>注意：</strong>当你创建了自定义服务，并连接到你的应用上后，你可以在控制器，指令，过滤器或其他服务中使用它。</p>
+
+<p>使用自定义过滤器：255-->{{255|myFormat}}</p>
+<ul ng-controller="ctrl-self16">
+    <li ng-repeat="x in numList">
+        {{x | myFormat}}
+    </li>
+
+</ul>
+
+
+<div ng-controller="ctrl-self17">
+    <p>姓： <input type="text" ng-model="xing"></p>
+    <p>名： <input type="text" ng-model="ming"></p>
+    <p>{{xing+" "+ming}}</p>
+    <p style="color: lightcoral">{{fullName}}</p>
+
+</div>
+
+<p ng-controller="ctrl-apply14">apply 实现计数：{{nowtime}}</p>
+
+<div style="height: 50px"></div>
+
+<hr>
+<h4>Select 选择框 </h4>
+
+
+<div style="height: 150px"></div>
 
 </body>
 </html>
