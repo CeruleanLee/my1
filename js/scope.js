@@ -1,4 +1,6 @@
 //as its name ,this show the use of scope
+//在模块定义中 [] 参数用于定义模块的依赖关系。
+// 中括号[]表示该模块没有依赖，如果有依赖的话会在中括号写上依赖的模块名字。
 var app = angular.module('my', []);
 app.controller('mycontroller', function ($scope) {
     $scope.name = "bill";
@@ -90,7 +92,9 @@ app.controller('ctrl-Service11', function ($scope, $http) {
 //简写：
 });
 app.controller('ctrl-Service12', function ($scope, $http) {
-    $http.get("http://www.runoob.com/try/angularjs/data/sites.php").success(function (response) {
+    $http.jsonp("http://www.runoob.com/try/angularjs/data/sites.php?callback=JSON_CALLBACK'").
+    success(function (response) {
+        console.log("--->"+response)
         $scope.successData2 = response.sites;
     });
 });
@@ -168,3 +172,105 @@ app.controller("ctrl-self17", function ($scope) {
     });
 
 });
+app.controller("ctrl18", function ($scope) {
+    $scope.person = {
+        name: "bill",
+        sex: "male",
+        age: "12",
+        price: "15"
+    };
+    $scope.sites = {
+        age: "Google",
+        site02: "Runoob",
+        site03: "Taobao"
+    };
+    $scope.carlist = {
+        car1: {
+            brand: "Ford",
+            color: "red",
+            id: 1
+        },
+        car2: {
+            brand: "Volvo",
+            color: "whit",
+            id: 2
+        },
+        car3: {
+            brand: "QQ",
+            color: "Yellow",
+            id: 3
+        }
+
+    };
+    //初始化
+    $scope.selectedCar = $scope.carlist.car1;
+});
+app.controller("ctrl19", function ($scope, $http) {
+        // $http.jsonp("http://192.168.81.102:8080/myapp/my1/demolist.json?callback=JSON_CALLBACK'")
+        //     .then(function (result) {
+        //         console.log("---------->"+result);
+        //         $scope.lists=result.data.records;
+        //     })
+        // }
+
+        $http({
+            method: 'JSONP',
+            url: 'http://192.168.81.102:8080/myapp/my1/demolist.json?callback=JSON_CALLBACK',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function successCallback(response) {
+            console.log("success-" + response);
+            $scope.lists=response.data.records;
+        }, function errorCallback(response) {
+            console.log("error-" + response.data);
+            // $scope.errorData = response;
+
+        });
+    }
+);
+app.controller("ctrl20", function ($scope) {
+       $scope.count=0;
+       $scope.isHide=false;
+       $scope.toggle=function () {
+           $scope.isHide=!$scope.isHide;
+       }
+       $scope.sum=function () {
+           $scope.count=this.count+1;
+       }
+    }
+);
+
+app.directive("myDirective",function () {
+    return{
+        template:"<p>i am a Directive</p>"
+    }
+});
+app.directive("runobjDirective", function () {
+    return {
+        template: "<p>i am a directive</p>"
+    };
+});
+app.directive("runoobDirective", function() {
+    return {
+        template : "我在指令构造器中创建!"
+    };
+});
+app.controller("ctrl21form", function ($scope) {
+        $scope.name="Amy";
+        $scope.age="12";
+        $scope.mail="456@163.com";
+        $scope.user2={name:"Bill",age:"15",mail:"123@163.com"};
+        $scope.isHide=false;
+        $scope.toggle=function () {
+            $scope.isHide=!$scope.isHide;
+        }
+        $scope.sum=function () {
+            $scope.count=this.count+1;
+        }
+        $scope.reset=function () {
+            $scope.user=angular.copy($scope.user2);
+        }
+        $scope.reset();
+    }
+);

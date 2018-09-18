@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Demo</title>
     <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-    <script src="js/scope.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <style>
         h4 {
             font-size: x-large;
@@ -23,7 +23,6 @@ Scope(作用域) 是应用在 HTML (视图) 和 JavaScript (控制器)之间的�
 Scope 是一个对象，有可用的方法和属性。
 Scope 可应用在视图和控制器上。
     说明: scope 是一个js函数，相当于是作用域、控制范围，被用保存ajs modeld的对象，被使用来调用控制器，
-
 
 </pre>
 <div ng-controller="mycontroller">
@@ -156,14 +155,13 @@ scope 是一个 JavaScript 对象，带有属性和方法，这些属性和方�
 AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $location 服务比使用 window.location 对象更好。
 </pre>
 
-<li>$http 服务   （服务向服务器发送请求，应用响应服务器传送过来的数据。）</li>
+<li>$http 服务 （服务向服务器发送请求，应用响应服务器传送过来的数据。）</li>
 <div ng-controller="ctrl-Service11">
     <p>成功信息：{{successData}}</p>
     <p>失败信息：{{errorData}}</p>
 
 </div>
 <div ng-controller="ctrl-Service12">
-
 
     <ul>get List:
         <li ng-repeat="x in successData2">{{x.Country}}</li>
@@ -172,20 +170,20 @@ AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $locati
     <!--<p>失败信息：{{errorData2}}</p>-->
 
 </div>
-<li>$timeout 服务  访问在规定的毫秒数后执行指定函数</li>
+<li>$timeout 服务 访问在规定的毫秒数后执行指定函数</li>
 <p ng-controller="ctrl-timeout13">{{hello}}</p>
 
 
 <li>$interval 访问在指定的周期(以毫秒计)来调用函数或计算表达式</li>
 <p ng-controller="ctrl-interval14">nowTime: {{nowtime}}</p>
 
-<li>自定义服务  </li>
+<li>自定义服务</li>
 <br>
 使用自定义服务，需要在定义控制器的时候独立添加，设置依赖关系
 <p>举个栗子</p>
 <p ng-controller="ctrl-self15">255 的16进制是：{{hex}}</p>
 
-<p> <strong>注意：</strong>当你创建了自定义服务，并连接到你的应用上后，你可以在控制器，指令，过滤器或其他服务中使用它。</p>
+<p><strong>注意：</strong>当你创建了自定义服务，并连接到你的应用上后，你可以在控制器，指令，过滤器或其他服务中使用它。</p>
 
 <p>使用自定义过滤器：255-->{{255|myFormat}}</p>
 <ul ng-controller="ctrl-self16">
@@ -194,7 +192,6 @@ AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $locati
     </li>
 
 </ul>
-
 
 <div ng-controller="ctrl-self17">
     <p>姓： <input type="text" ng-model="xing"></p>
@@ -207,12 +204,206 @@ AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $locati
 <p ng-controller="ctrl-apply14">apply 实现计数：{{nowtime}}</p>
 
 <div style="height: 50px"></div>
-
 <hr>
-<h4>Select 选择框 </h4>
+<h4>Select 选择框 <strong>ng-options </strong></h4>
+
+<div ng-controller="ctrl5">
+    <!--ng-init  设置默认选项-->
+    <select name="" id="select1" ng-init="selectedName=nameList[0]"
+            ng-model="selectedName" ng-options="x.name for x in nameList">
+    </select>
+    <p> 选中的：{{selectedName.name}}----{{selectedName.country}}</p>
+
+
+    <br>
+    使用ng-repeat
+    <select ng-model="selectedOne">
+        <option value="{{x.country}}"
+                ng-repeat="x in nameList">{{x.name}}
+        </option>
+    </select>
+    <p> ng-repeat 选中的：{{selectedOne.name}}----{{selectedOne.country}}</p>
+    <!--这里选中的是value的值-->
+    <p>ng-repeat 选中的：{{selectedOne}}</p>
+    <p>比较：ng-repeat 指令是通过数组来循环 HTML 代码来创建下拉列表，但 ng-options 指令更适合创建下拉列表，它有以下优势：
+        使用 ng-options 的选项是一个对象， ng-repeat 是一个字符串</p>
+</div>
+<div ng-controller="ctrl18">
+    <!--使用对象作为数据源, x 为键(key), y 为值(value):-->
+    <select ng-model="selectPerson" ng-options="x for (x,y) in person">
+
+    </select>
+    <select ng-model="selectedSite" ng-options="x for (x, y) in sites">
+    </select>
+    <!--selectPerson 是value-->
+    <p> you choosed : {{selectedSite}}</p>
+    <!--selectedCar是一个对象-->
+    <select ng-model="selectedCar" ng-options="x for (x, y) in carlist">
+    </select>
+    <!--下拉列表中的选项也可以是对象的属性  init 初始化-->
+    <select ng-model="selectedCar2" ng-init="selectedCar2=carlist['car2']"
+            ng-options="y.brand for (x, y) in carlist"></select>
+
+    <p style="color: lightcoral"> you choosed : {{selectedCar.brand}}---{{selectedCar.color}}</p>
+
+
+    <p>给 id 一个别名 y.brand，显示出来的brand值，但实际还是 id 值。</p>
+
+    <select ng-init="selectCarid=carlist['car2'].id" ng-model="selectCarid"
+            ng-options="y.id as y.brand for (x,y) in carlist">
+    </select>
+    <p>
+        id:{{selectCarid}}
+    </p>
+
+
+</div>
+<div style="height: 50px"></div>
+<hr>
+<h4>表格 使用 <strong>ng-repeat </strong></h4>
+<div ng-controller="ctrl19">
+
+    <table>
+        <tr ng-repeat="x in lists">
+            <td>{{x.Name}}</td>
+            <td>{{x.Country}}</td>
+        </tr>
+    </table>
+
+
+</div>
+<p>跨域问题未解决</p>
+
+<div style="height: 50px"></div>
+<hr>
+<h4>DOM <strong> </strong></h4>
+<li>使用ng-disable</li>
+
+<div ng-init="myButton=true">
+    <!--ng-disabled 指令绑定应用程序数据 myButton 到 HTML 的 disabled 属性。-->
+    <p>
+        <button ng-disabled="myButton">click button</button>
+    </p>
+    <!--ng-model 指令绑定 "myButton" 到 HTML input checkbox 元素的内容（value）。-->
+    <p><input type="checkbox" ng-model="myButton">disable</p>
+
+    <p>isDisable:{{myButton}}</p>
+</div>
+<li>
+    ng-show 指令根据 value 的值来显示（隐藏）HTML 元素。
+    <br>
+    ng-hide 与上相反
+</li>
+
+<p ng-show="true">visible</p>
+<p ng-show="false">invisible</p>
+
+
+<p ng-hide="true"> hide</p>
+<p ng-hide="false"> unhide</p>
+<li>ng-click</li>
+
+<div ng-controller="ctrl20">
+
+    <p>
+        <button ng-click="toggle()">hide/visible</button>
+    </p>
+    <div ng-hide="isHide">
+        <P>
+            <button ng-click="count=count+1">click me!</button>
+        </P>
+        <p>{{count}}</p>
+    </div>
+    <div>
+        <P>
+            <button ng-click="sum()">click me!</button>
+        </P>
+        <p style="color: darkmagenta">{{count}}</p>
+    </div>
+
+</div>
+<my-directive></my-directive>
+<div runoob-directive></div>
+<runobj-directive></runobj-directive>
+<div style="height: 50px"></div>
+<hr>
+<h4>表单 <strong> </strong></h4>
+<div ng-controller="ctrl21form">
+    <form action="" name="myTestForm">
+        name:
+        <input type="text" ng-model="user.name" required>
+        <span style="color: crimson" ng-show="myTestForm.user.name.$dirty&&myTestForm.user.name.$invalid">
+</span>
+        <span ng-show="myTestForm.user.name.$error.required">必填项
+
+        </span><br>
+        age:
+        <input type="text" ng-model="user.age">
+        <br>
+        E-mail:
+        <input type="text" ng-model="user.mail">
+        <br>
+        isGirl:
+        <input type="checkbox" ng-model="var1">
+        <br>
+        choose one <input type="radio" ng-model="var2" value="dog">Dog
+        <input type="radio" ng-model="var2" value="cat">Cat
+
+        <input type="radio" ng-model="var2" value="car">Car
+        <br>
+
+        <select name="" id="" ng-model="var2" ng-init="var2='dog'"> select one
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="car">Car</option>
+
+        </select>
+        <button ng-click="reset()">reset
+
+        </button>
+    </form>
+    <p>form:{{user}}</p>
+    <p>user2:{{user2}}</p>
+    <p ng-show="var1">i am a girl</p>
+    <div ng-switch="var2">
+        <div ng-switch-when="dog">
+            <p style="color: #589585">dog <br> you choosed dog</p>
+        </div>
+        <div ng-switch-when="cat">
+            <p style="color: cornflowerblue">cat <br> you choosed cat</p>
+        </div>
+        <div ng-switch-when="car">
+            <p style="color: darkorchid">car <br> you choosed car</p>
+        </div>
+    </div>
+    <p style="color: crimson"><strong>Tips:</strong></p>
+    <li style="color: darkblue">ng-switch 指令根据单选按钮的选择结果显示或隐藏 HTML 区域</li>
+    <li>novalidate 属性是在 HTML5 中新增的。禁用了使用浏览器的默认验证。<br>novalidate 属性在应用中不是必须的，但是你需要在 AngularJS 表单中使用，用于重写标准的 HTML5 验证。
+    </li>
+</div>
 
 
 <div style="height: 150px"></div>
+<script src="js/scope.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url: 'demolist.json',
+            contentType: 'application/json',
+            type: 'GET',
+            timeout: 5000,
+            dataType: 'JSON',
+            data: JSON.stringify({schoolId: 123}),
+            success: function (res) {
 
+            },
+            Error: function (xhr, type, errorThrown) {
+                console.log(JSON.stringify(xhr));
+                console.log(type);
+                console.log(errorThrown);
+            }
+        });
+    })
+</script>
 </body>
 </html>
