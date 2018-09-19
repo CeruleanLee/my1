@@ -331,17 +331,23 @@ AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $locati
 <div ng-controller="ctrl21form">
     <form action="" name="myTestForm">
         name:
-        <input type="text" ng-model="user.name" required>
-        <span style="color: crimson" ng-show="myTestForm.user.name.$dirty&&myTestForm.user.name.$invalid">
+        <input type="text" ng-model="user.name" name="name" required>
+        <span style="color: crimson" ng-show="myTestForm.name.$dirty&&myTestForm.name.$invalid">
 </span>
-        <span ng-show="myTestForm.user.name.$error.required">必填项
+        <span ng-show="myTestForm.name.$error.required">必填项
 
         </span><br>
         age:
         <input type="text" ng-model="user.age">
         <br>
         E-mail:
-        <input type="text" ng-model="user.mail">
+        <input type="email" ng-model="user.mail" name="mail" required>
+        <!--这里的判断是和name绑在一起的-->
+        <span style="color: crimson" ng-show="myTestForm.mail.$dirty&&myTestForm.mail.$invalid">
+</span>
+        <span ng-show="myTestForm.mail.$error.required">必填项</span>
+        <span ng-show="myTestForm.mail.$error.email">非法邮箱</span>
+
         <br>
         isGirl:
         <input type="checkbox" ng-model="var1">
@@ -361,6 +367,9 @@ AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $locati
         <button ng-click="reset()">reset
 
         </button>
+        <br>
+        <input type="submit" ng-disabled="myTestForm.name.$dirty&&myTestForm.name.$invalid||
+myTestForm.mail.$dirty&&myTestForm.mail.$invalid">
     </form>
     <p>form:{{user}}</p>
     <p>user2:{{user2}}</p>
@@ -379,6 +388,11 @@ AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $locati
     <p style="color: crimson"><strong>Tips:</strong></p>
     <li style="color: darkblue">ng-switch 指令根据单选按钮的选择结果显示或隐藏 HTML 区域</li>
     <li>novalidate 属性是在 HTML5 中新增的。禁用了使用浏览器的默认验证。<br>novalidate 属性在应用中不是必须的，但是你需要在 AngularJS 表单中使用，用于重写标准的 HTML5 验证。
+    </li>
+    <li>
+        $dirty - 表单有填写记录； $valid - 字段内容是否合法； $invalid - 字段内容是否非法；
+        $pristine - 表单没有填写记录
+
     </li>
 </div>
 

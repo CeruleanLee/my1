@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--适配移动设备  initial-scale=1.0 确保网页加载时，
+    以 1:1 的比例呈现，不会有任何的缩放
+    user-scalable=no 可以禁用其缩放（zooming）功能
+    通常情况下，maximum-scale=1.0 与 user-scalable=no 一起使用。
+    这样禁用缩放功能后，用户只能滚动屏幕，就能让您的网站看上去更像原生应用的感觉。-->
+    <meta name="viewport" content="width=device-width,
+                                     initial-scale=1.0,
+                                     maximum-scale=1.0,
+                                     user-scalable=no">
+    <title>ApiDemo</title>
+    <!--1.4.6的-->
+    <!--<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>-->
+    <!--1.7.0 之后的api 有一些变化-->
+    <script src="https://cdn.bootcss.com/angular.js/1.7.0/angular.min.js"></script>
+    <!--引入路由-->
+    <script src="https://cdn.bootcss.com/angular.js/1.7.0/angular-route.min.js"></script>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 可选的Bootstrap主题文件（一般不使用） -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style>
+        h4 {
+            font-size: x-large;
+            color: cornflowerblue;
+        }
+
+        p {
+            color: seagreen;
+        }
+    </style>
+</head>
+<body ng-app="myAngularApi">
+<h4> angular.js 的api 在1.7.0前后有变化</h4>
+<img src="../img/angularjs_api.png" alt="angularjs_api.png">
+<div ng-controller="ctrl1">
+    {{sometext}} upperCase --->&nbsp; &nbsp; &nbsp; &nbsp;{{sometext2}}
+    <br>
+    {{sometext}} isString --->&nbsp; &nbsp; &nbsp; &nbsp;{{isString}} <BR>
+    {{sometext}} isNumber --->&nbsp; &nbsp; &nbsp; &nbsp;{{isNumber}} <br>
+    {{somenumber}} isString --->&nbsp; &nbsp; &nbsp; &nbsp;{{isString2}} <br>
+    {{somenumber}} isNumber --->&nbsp; &nbsp; &nbsp; &nbsp;{{isNumber2}} <br>
+
+
+    <input type="text" ng-model="myInput" ng-blur="blur() ">
+    <p>{{upper}}</p>
+    <div ng-switch="isNumber3">
+        是不是数字：
+        <p ng-switch-when="true">是</p>
+        <p ng-switch-when="false">不是</p>
+        <p ng-switch-when="">不造</p>
+    </div>
+</div>
+<P>
+    Tips:
+</P>
+<li>ng-blur指令用于告诉 AngularJS HTML 元素在失去焦点时需要执行的表达式。
+    <br>AngularJS中的 ng-blur 指令不会覆盖原生的 onblur 事件，
+    如果触发该事件，ng-blur 表达式与原生的 onblur 事件都会执行 <br>
+
+    Q:ng-blur是失焦事件,当失焦以后再次获取焦点的时候会触发失焦事件吗?
+    <BR>
+    A:l失焦事件只会在失去焦点的时候触发，失去焦点再次获取焦点的时候不会触发失焦事件。
+</li>
+<li>
+    ng-focus指令用于告诉 AngularJS 在 HTML 元素获取焦点时需要执行的操作。 <br>
+
+    ng-focus指令不会覆盖元素的原始 onfocus 事件, 事件触发时，<br>
+    ng-focus表达式与原始的 onfocus 事件将都会执行。<br>
+    原生onfocus事件执行在前，ng-focus指令执行在后
+
+
+</li>
+<li>
+    <b>ng-change</b>指令用于告诉 AngularJS 在 HTML 元素值改变时需要执行的操作。
+    <br>
+    ng-change指令需要搭配 ng-model 指令使用。
+    <br>
+    AngularJS ng-change 指令指令不会覆盖原生的 onchange 事件, 如果触发该事件，ng-change 表达式与原生的 onchange 事件都会执行。
+    <br>
+    ng-change事件在值的每次改变时触发，它不需要等待一个完成的修改过程，或等待失去焦点的动作。
+    <br>
+    ng-change事件只针对输入框值的真实修改，而不是通过 JavaScript 来修改。
+    <br>
+    语法：&lt;element ng-change="expression"&gt;&lt; /element&gt;
+
+    < input>, < select>, 和 &lt;textarea&gt; 元素支持。
+</li>
+<li>ng-disabled指令设置表单输入字段的 disabled 属性(input, select, 或 textarea)。
+    <BR>
+    如果ng-disabled 中的表达式返回 true 则表单字段将被禁用。
+</li>
+
+<li> ng-include 包含 <br>
+    a.可以包含html 文件 <br>
+    b.包含angularjs 代码 <br>
+    c.跨域的文件 <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;（默认情况下， ng-include 指令不允许包含其他域名的文件。
+    如果你需要包含其他域名的文件，你需要设置域名访问白名单）
+</li>
+<div style="height: 50px">
+</div>
+<br>
+<h4> 首选样式表 Bootstrap</h4>
+<div>
+    Bootstrap 3 的设计目标是移动设备优先，然后才是桌面设备。这实际上是一个非常及时的转变，因为现在越来越多的用户使用移动设备。
+
+    为了让 Bootstrap 开发的网站对移动设备友好，确保适当的绘制和触屏缩放，需要在网页的 head 之中添加 viewport meta 标签，如下所示：
+
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</div>
+<div style="height: 50px">
+</div>
+<br>
+<h4> 关于依赖注入</h4>
+<li>
+    value
+    <pre>
+    js代码中：
+    var app =angular.module('myAngularApi', []);
+    app.value("someNum",5);
+    上述创建了一个 sonmeNum的对象，并且传递数据为5
+    然后将这个对象注入到controller中：
+    app.controller('ctrl2', function ($scope，someNum) {
+    $scope.somevar = someNum;
+    }
+});
+    </pre>
+</li>
+<li>
+    factory ,函数用于计算或者返回值 通长用于注入service 和controller 中 在其创建的时候引入
+    <pre>
+        //创建 factory ServiceName
+    app.factory('ServiceName',function () {
+    var factory={};
+
+    factory.multiply=function (a,b) {
+        return a*b;
+    }
+    return factory;
+    });
+    //注入：ServiceName
+    app.service("TestService",function (ServiceName) {
+    this.someNum=function (a) {
+        return ServiceName.multiply(a,a);
+    }
+    });
+    </pre>
+</li>
+
+<li>
+    provider 通过他来创建一个service 和factory(在配置阶段) 提供了一个factory 的get() 方法，来
+    返回value service factory
+</li>
+<li>constant 用于在配置阶段传递数值 且在配置阶段不可用</li>
+
+<p>举个栗子</p>
+<div ng-controller="ctrl2">
+    <p> input some number : <input type="number" ng-model="inputnum"></p>
+    <button ng-click="square()">X <sup>2</sup></button>
+    ---> result:&nbsp;&nbsp;{{result}}
+</div>
+<div ng-controller="ctrl3">
+    <p> input some number : <input type="number" ng-model="inputnum"></p>
+    <button ng-click="square()">X <sup>2</sup></button>
+    ---> result:&nbsp;&nbsp;{{result}}
+</div>
+<div style="height: 50px">
+</div>
+<br>
+<h4> ngRoute 路由</h4>
+<pre>
+AngularJS 路由允许我们通过不同的 URL 访问不同的内容。
+
+通过 AngularJS 可以实现多视图的单页 Web 应用（single page web application，SPA）。
+
+通常我们的 URL 形式为 http://baidu.com/first/page，
+    但在单页 Web 应用中 AngularJS 通过 #! + 标记 实现，例如：
+    http://baidu.com/#!/page1
+    http://baidu.com/#!/page2
+    http://baidu.com/#!/page3
+
+    <strong>注意：</strong> Angular1.6 之前的版本是通过 # + 标记 实现路由。
+    当我们点击以上的任意一个链接时，向服务端请的地址都是一样的 (http://runoob.com/)。
+    因为 #! 号之后的内容在向服务端请求时会被浏览器忽略掉。
+    所以我们就需要在客户端实现 #! 号后面内容的功能实现。
+    AngularJS 路由就通过 #! + 标记 帮助我们区分不同的逻辑页面并将不同的页面绑定到对应的控制器上。
+</pre>
+<div>
+    <li>
+        <a href="#!/">首页</a>
+    </li>
+    <li>
+        <a href="#!/page1">页面1</a>
+    </li>
+    <li>
+        <a href="#!/page2">页面2</a>
+    </li>
+    <li>
+        <a href="#!/page3">页面3</a>
+    </li>
+    <!--ng-view 指令 指该div内的html内容会根据路由的变化而变化-->
+    <div ng-view></div>
+</div>
+<p>ng-view 指令 指该div内的html内容会根据路由的变化而变化</p>
+<p>AngularJs $routeProvider 来定义路由规则</p>
+<p>js 中的config函数用来配置路由规则</p>
+<p>$routeProvider 为我们提供了 when(path,object) & otherwise(object) 函数按顺序定义所有路由，函数包含两个参数:
+    <br>
+    第一个参数是 URL 或者 URL 正则规则。<br>
+    第二个参数是路由配置对象。</p>
+<p>
+<pre>
+    路由设置对象参数规则：
+    $routeProvider.when(url,{
+    template:string, //在ng-view中插入简单的html内容
+    templateUrl:string, //在ng-view中插入html模版文件
+        .when('/computers', {
+        templateUrl: 'views/computers.html',});//会从服务端获取 views/computers.html 文件内容插入到 ng-view 中。
+    controller:string,function / array, //在当前模版上执行的controller函数
+    controllerAs:string, //为controller指定别名
+    redirectTo:string,function, //重定向的地址
+    resolve:object&lt;key,function&gt; //指定当前controller所依赖的其他模块
+});
+</pre>
+</p>
+
+
+<script src="../js/angularscope_api.js"></script>
+
+</body>
+</html>

@@ -271,6 +271,6 @@ app.controller("ctrl21form", function ($scope) {
         $scope.reset=function () {
             $scope.user=angular.copy($scope.user2);
         }
-        $scope.reset();
+        // $scope.reset();
     }
 );
