@@ -1,0 +1,60 @@
+angular1 和 2：
+1:-app.module   .controller    .provider   .service             .etc
+可结合ionic1
+
+
+2:-->组件化 模块化
+
+①模块：在其中打包服务与组件，最后通过引导跟模块来启动应用。由一块代码组成，用来执行一个简答你的任务,以@NgModule 装饰器来修饰，用于接收莫属模块属性的元数据对象。
+每个angular都有一个跟模块，AppModule
+②组件：管理模板。处理应用和逻辑也面的视图部分（通过一些属性和方法组成的api来与视图进行交互）；是angular的基础和核心部分，用于整个应用中；知道自己如何去渲染自己切配置依赖注入；
+创建的三个步骤：
+a. 从@angular/core 中引入Component修饰器
+b.新建普通类用@Component修饰它
+c.在@Component中设置selector自定义标签以及tempalte 模板
+
+③模板：angular 扩展的html 语法，使用双大括号来插值{{sth}}  sth 组件属性的变量名。
+④元数据：tell Angular how to deal with this Class。
+把元数据附在组件中来告诉Angular Component是一个组件
+TS中，用装饰器decorator 来附加元数据
+@Component 接收一个配置对象，并把紧随其后的类标记为组件类，angular基于这些信息来创建和展示组件及其视图
+
+
+⑤数据的绑定：
+为应用提供显示数据和数据交互的方法，是管理程序中数值的一种机制，可以从HTML中取值和赋值。四种语法形式：（从dom中来到dom中去）a.插值 b.属性绑定 c.事件绑定 d.双向绑定 
+
+⑥指令：是一个带有指令元素的类，在TS中，通过@Directive 装饰器把元数据附加到类上。有三种类型的指令：a.属性指令（以元素属性的形式来使用的指令） b. 结构指令（用于改变Dom树的结构） c.组件，是指令的一个重要子类，本质上可以看做一个带有模板的指令
+
+栗子：
+<li *ngFor="let site of sites"></li> *ngFor告诉Angular为sites 列表中的每个项生成一个li标签
+
+<site-detail *ngIf=“selectedSite”></site-detail>
+*ngIf 标识只有在选项存在的时候，才会去包含siteDetail 组件
+
+⑦服务：完成应用逻辑.在2中，服务包含了某一特定的功能，可以通过注入的方式供他人使用的独立模块，包括函数，值，以及应用所需要的特性  例如，在多个组件中如果有重复的代码，那么可以把重复的代码提取到服务中来实现代码的复用  （常见服务：日志服务，数据-- 消息总线  税款计算，应用程序配置等）
+⑧依赖注入：控制反转（Inversion of control IOC，是面向对象的一种设计原则，用于降低计算机代码间的耦合度） 也叫依赖注入  dependency injextion (DI) Dependency Lookup (DL) 
+
+
+
+
+
+
+4:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+5.18发布版本1.0.0
+G:\Awork\0503my\my\mianyang 
+
+5.28预发布版本
+G:\Awork\mianyang0528\mianyang28
+
+后续需求版本(包括新增回复信息列表展示)
+G:\Awork\mianyang1.0\mianyang
+
+8.23发布存量运营V2.4.0最新代码：
+G:\Awork\AStockOperation0807
+
+
+//注意:
+Android studio 报错 installation failed with message failed to finalize session:INSTALL_FAILED_INVALID_APK 解决方法
+解决方案：
+
+File->Setting->Build->Instant Run 
+
+打包时要打开
+
+genymotion 
+
+cerulean_l-genymotion1997
+
+tiner802 是集成tinker的
+710是cc
+
+0611是最新发布版   改了https的访问，框架集成好需合并代码
+
+
+
+G:\Awork\AStockOperation0807 存量运营 最新代码 未集成tinker
+
+
+Error:The number of method references in a .dex file cannot exceed 64K.
+Learn how to resolve this issue at https://developer.android.com/tools/building/multidex.html
+
+
+
+8.20
+G:\Awork\ABuglyStockOperation0820 跑通 
+ 集成tinker ing  未配置完整tinker-support.gradle  
+core 抽出相册部分
+
+push  to   genymotion
+android sdk –plateform-tools文件夹的目录下打开命令行窗口 push
+adb push G:\Awork\ABuglyStockOperation0820\app\build\bakApk\app-0822-17-10-52\somp_scyd_cs0820_v\app-somp_scyd_cs0820_v-release.apk /sdcard/Download/
+
+adb push C:\Users\admin\Desktop\app-release.apk /sdcard/Download/
+
+
+adb push G:\Alyt\Demo\ws\IonicApp\m3\myApp\platforms\android\app\build\outputs\apk\debug\app-debug.apk /sdcard/Download/
+
+
+adb push G:\Alyt\Demo\ws\IonicApp\m3\myown\myApp\platforms\android\app\build\outputs\apk\debug\app-debug.apk /sdcard/Download/
+
+
+
+
+adb push E:\About Apk\ReleaseApk\0903\sh_qdzc_cs_0803_v\release\sh_qdzc_cs_0903_v1.0.8.apk /sdcard/Download/
+
+
+ws配置
+-javaagent:D:/Program Files (x86)/JetBrains/WebStorm/bin/JetbrainsCrack-2.10-release-enc.jar
+
+
+ -javaagent:D:\soft\WebStorm\bin\JetbrainsCrack.jar
+
+
+
+react-native run-android
+
+
+git pull origin master --allow-unrelated-histories
+
+---------------------
+
+本文来自 lindexi_gd 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/lindexi_gd/article/details/52554159?utm_source=copy 
+
+
+
+Linux 16.04  管理员：user0   123456
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

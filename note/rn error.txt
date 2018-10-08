@@ -1,0 +1,163 @@
+修改前的java-home:C:\Program Files\Java\jre1.8.0_102;
+
+
+RN error handle 
+react-native init myApp --version 0.55.4
+
+react-native init SampleAppMovies --version 0.55.4
+
+
+npm install
+
+
+
+react-native run-android
+
+
+F1 refresh 
+
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+
+
+
+作者：S__J
+链接：https://www.jianshu.com/p/9664a7c1038a
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+
+https://www.cnblogs.com/LiuZhen/p/5971176.html
+
+
+https://segmentfault.com/a/1190000007739489
+
+Unable to resolve module `AccessibilityInfo` from `G:\Alyt\Demo\reactn\demomovie
+\SampleAppMovies\node_modules\react-native\Libraries\react-native\react-native-i
+mplementation.js`: Module `AccessibilityInfo` does not exist in the Haste module
+ map
+
+
+This might be related to https://github.com/facebook/react-native/issues/4968
+To resolve try the following:
+  1. Clear watchman watches: `watchman watch-del-all`.
+  2. Delete the `node_modules` folder: `rm -rf node_modules && npm install`.
+  3. Reset Metro Bundler cache: `rm -rf /tmp/metro-bundler-cache-*` or `npm start -- --reset-cache`.  4. Remove haste cache: `rm -rf /tmp/haste-map-react-native
+-packager-*`.
+
+
+http://weibo.com/1712131295/CoRnElNkZ?ref=collection&type=comment
+
+
+
+tomcat:
+D:\soft\apache-tomcat-9.0.12-windows-x64\apache-tomcat-9.0.12\bin   
+cmd
+startup 开启服务   http://localhost:8080/ 验证   可以用
+
+http://192.168.81.102:8080/myapp/my1/scope.html#/
+
+
+
+ <View style={styles.container}>
+                <Image style={styles.thumnail} source={{uri: movie.posters.thumbnail}}/>
+                <View style={styles.rightcontainer}>
+
+                    <Text style={styles.title}>{movie.title}</Text>
+                    <Text style={styles.year}>{movie.year}</Text>
+                </View>
+                {/*<Text style={styles.mydemotext}>
+              this is my demo！
+          </Text>*/}
+                {/* <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit App.js
+        </Text>
+        <Text style={styles.instructions}>
+          {instructions}
+        </Text>*/}
+            </View>
+
+
+
+
+
+redux
+
+参考： https://www.cnblogs.com/heigehe/articles/6237362.html     
+https://segmentfault.com/a/1190000010851224
+
+https://redux.js.org/introduction/examples
+
+https://segmentfault.com/a/1190000012976767
+
+https://www.jianshu.com/p/8fb7df931eea
+https://www.jianshu.com/p/2c43860b0532
+
+
+<Animated.View>
+                <StatusBar hidden={false} backgroundColor={Constant.primaryColor} barStyle={"light-content"}>
+                </StatusBar>
+                <View style={[{backgroundColor: '#565656'}, {
+                    height: 360, width: screenWidth - 80,
+                    margin: 50,
+                    borderRadius: 10,
+                }]}>
+                    <View>
+                        <Fumi
+                            ref={"userNameInput"}
+                            label={'username'}
+                            iconClass={FontAwesomeIcon}
+                            iconName={'user'}
+                            value={this.state.etname}
+                            onChangeText={this.userNameChange}
+                        />
+
+                    </View>
+                    <View>
+                        <Fumi
+                            ref={"passwordInput"}
+                            label={'password'}
+                            iconClass={FontAwesomeIcon}
+                            iconName={'keyboard-o'}
+                            value={this.state.etpwd}
+                            onChangeText={this.userPwdChange}
+                        />
+
+                    </View>
+                    <TouchableOpacity
+                        style={[styles.centered, {marginTop: Constant.matginTop}]}
+                        onPress={() => {
+                            alert("click login")
+                        }}
+                    >
+                        <View style={[styles.centered, {
+                            backgroundColor: Constant.primaryColor,
+                            width: 230,
+                            marginTop: Constant.matginTop,
+                            paddingHorizontal: Constant.nomalPadding,
+                            borderRadius: 5,
+
+
+                        }]}>
+
+
+                            <Text style={[styles.loginText]}> login</Text>
+                        </View>
+
+                    </TouchableOpacity>
+
+
+                </View>
+
+            </Animated.View>
+
+
+Argular js   
+数据双向同步
+
+
+orgin/master
+

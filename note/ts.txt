@@ -1,0 +1,20 @@
+定义多行文本： 反引号（` `）包围
+
+
+使用的基本数据类型，与js相同，增加枚举  any  void  null undefined(是单独的类型哦) strictNullChecks 严格空检查 never 
+1.any 和obj
+在不清楚变量的类型时，都可以用，但any可以调到他上面的方法，但是obj不能，即时他真的有这些方法
+
+2.void 与any相反  当函数没有返回值的时候用  但没什么卵用，因为这种情况只能赋值undefined or null 
+function toast():void {
+alert("alert sth");}
+
+let unusable:void=undefined;
+3.null和undefined 是所有类型的子类
+
+
+类型的断言：
+相当于java 类型转换
+当写入类型断言 程序不进行特殊的数据检查和结构，在运行时不影响只在编译阶段起作用
+两种形式 ① 尖括号： let somestr:any="sth";   let stringLength:number=(<string>somestr).length;  //明确这里的somestr是string类型的
+②as 语法同上   let stringLength:number=(somestr as string).length;
