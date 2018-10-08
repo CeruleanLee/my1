@@ -1,5 +1,9 @@
 定义多行文本： 反引号（` `）包围
 
+https://www.jianshu.com/p/a8c14409a113    
+ts 变量：
+https://www.tslang.cn/docs/handbook/variable-declarations.html
+
 
 使用的基本数据类型，与js相同，增加枚举  any  void  null undefined(是单独的类型哦) strictNullChecks 严格空检查 never 
 1.any 和obj
