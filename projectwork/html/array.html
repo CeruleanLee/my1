@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //------------数组
+
+        var array = [10, 20, 30, 40, 50];
+        //100-200之间所有奇数的和  continue
+        for (let i = 0; i <= array.length - 1; i++) {
+            console.log(array[i]);
+        }
+
+        var max = array[0];
+        //假设是最大值，实际是最小值
+        // var max=Number.MIN_VALUE;
+        for (let i = 0; i <= array.length - 1; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+        console.log("数组最大值" + max);
+
+
+        var min = array[0];
+        //假设是最大值，实际是最小值
+        // var max=Number.MIN_VALUE;
+        for (let i = 0; i <= array.length - 1; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        console.log("数组最小值" + min);
+        console.log("倒叙：");
+        for (let i = array.length - 1; i >= 0; i--) {
+            console.log(array[i]);
+        }
+        var allvalue = "";
+        //假设是最大值，实际是最小值
+        // var max=Number.MIN_VALUE;
+        for (let i = 1; i < array.length; i++) {
+            allvalue += "-" + array[i];
+        }
+        console.log("数组拼接" + array[0] + allvalue);
+
+        var array2 = [10, 0, 30, 40, 50, 60];
+        var array3 = [];
+        //100-200之间所有奇数的和  continue
+        for (let i = 0; i <= array2.length - 1; i++) {
+            if (array2[i] != 0) {
+                array3[array3.length] = array2[i];
+            }
+        }
+        console.log("去掉0：" + array3);
+        // 反转数组  不是倒叙  头尾交换  交换次数是数量的一半
+        for (let i = 0; i < array2.length / 2; i++) {
+
+            var temp = array2[i];
+            array2[i] = array2[array2.length - 1 - i];
+            array2[array2.length - 1 - i] = temp;
+        }
+        console.log("反转：" + array2);
+
+        //根据用户输入的人数，计算总成绩 平均值 最高分 最低分
+        //转成字符串类型
+        var personCount = parseInt(prompt("请输入班级人数"))
+        var scores = [];
+        for (let i = 0; i < personCount; i++) {
+            scores[scores.length] = parseInt(prompt("请输入第" + i + "个人的成绩"))
+
+        }
+        var scoreall = 0;
+        var scoreMax = scores[0];
+        var scoreMin = scores[0];
+        for (let i = 0; i < scores.length; i++) {
+            scoreall += scores[i];
+            if (scoreMax < scores[i]) {
+                scoreMax = scores[i];
+            }
+            if (scoreMin > scores[i]) {
+                scoreMin = scores[i];
+            }
+        }
+        console.log("平均：" + scoreall / scores.length);
+        console.log("最大：" + scoreMax);
+        console.log("最小：" + scoreMin);
+        //冒泡
+        var array6 = [5, 0, 85, 25, 46, 22,66];
+        for (let i = 0; i < array6.length - 1; i++) {//轮数
+            for (let j = 0; j < array6.length - 1 - i; j++) {
+                if (array6[j]>array6[j+1]) {
+                    let temp=array6[j];
+                    array6[j]=array6[j+1];
+                    array6[j+1]=temp;
+                }
+            }
+
+        }
+        console.log("冒泡：：" + array6);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>18.Title</title>
+    <script>
+
+        function sum(x, y) {
+            return x + y;
+        }
+
+        var a = parseInt(prompt("输入a"));
+        var b = parseInt(prompt("输入b"));
+        var result = sum(a, b);//需要就接受
+        console.log(result);
+
+        //原的面积
+        function f1(r) {
+            return Math.PI*r*r;
+        }
+        console.log(f1(2));
+        //一个数是不是质数   只能被1和本身整除
+        function f2(x) {
+            var arr=[];
+            for (let i = 2; i < x; i++) {
+                var isPrime=true;
+
+                for (let j = 2; j < i; j++) {
+                    if (i % j == 0) {
+                        isPrime=false;
+
+                        break;
+                    }
+                }
+                if (isPrime) {
+                    arr[arr.length]=i;
+                }
+            }
+            return arr;
+        }
+        console.log("素数："+f2(20));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

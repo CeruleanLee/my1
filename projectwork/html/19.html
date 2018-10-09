@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //------------break /continue
+        //100-200间第一个可以被7整除的数字
+        for (let i = 100; i <= 200; i++) {
+            if (i % 7 == 0) {
+                console.log(i);
+                break;
+            }
+        }
+        var sum = 0;
+        //100-200之间所有奇数的和  continue
+        for (let i = 1; i <= 10; i++) {
+            if (i % 2 == 0) continue;
+            sum += i;
+            // if (i % 2 != 0){
+            //     sum+=sum;
+            // }
+        }
+        console.log("sum-" + sum);
+        //求1-100累加值，排除所有个位为3的数
+        //除以10 余3
+        var sum2 = 0;
+        for (let i = 1; i <= 100; i++) {
+            if (i % 10 == 3) continue;
+            sum2 += i;
+        }
+        console.log("sum2-" + sum2);
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
