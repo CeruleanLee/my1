@@ -22,3 +22,206 @@ let unusable:void=undefined;
 当写入类型断言 程序不进行特殊的数据检查和结构，在运行时不影响只在编译阶段起作用
 两种形式 ① 尖括号： let somestr:any="sth";   let stringLength:number=(<string>somestr).length;  //明确这里的somestr是string类型的
 ②as 语法同上   let stringLength:number=(somestr as string).length;
+
+
+
+let 块级作用域 for循环之外是不能访问的
+const 
+
+解构   数组解构  对象解构
+
+属性重命名     let {a:name1, b:name2}=o;  这是重命名 冒号并不是指示类型 a作为name1   可以理解为：let name1=o.a;let name2=o.b;
+指定类型应该用完整的模式： let  {a,b}:{a:number,b:number}=o;
+
+展开  数组展开，类似于拼接   对象展开，拼接+后面的属性会覆盖前面的，同时，仅包含自身的可枚举属性，也就是说会丢失方法eg:
+
+class C{
+p=12;
+m(){};
+}
+
+let c=new C();
+let clone={……c};
+clone.p//yes  yo can get 
+clone.m()//error !
+
+
+
+
+ts 的核心原则之一 ，对值所具有的结构进行类型检查
+接口，为这些类型命名和代码定义第三方契约
+
+function printLabel(labelledObj: { label: string }) {
+  console.log(labelledObj.label);
+}
+
+let myObj = { size: 10, label: "Size 10 Object" };
+printLabel(myObj); 
+
+这里要求 这个参数对象必须持有一个名为label的string属性，是事实上我们传入的对象参数会包含许多属性，但是编译器只会检查哪些必要的属性是否存在，类型是否匹配  但有时ts不会如此宽松
+====
+引入接口 
+interface LabelledValue {
+  label: string;
+}//这里相当于一个名字，描述了这个参数的要求，代表一个有一个label属性，类型为string的对象，但这里传入的对象不必实现这个接口，这里关注的只是值的外形，只要传入的对象时满足条件，那么就被允许
+
+function printLabel(labelledObj: LabelledValue) {
+  console.log(labelledObj.label);
+}
+
+let myObj = {size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+
+==
+接口的属性可以是可选属性，应用option bags 来定义 ,可选属性可以对可能存在的属性进行预定义，可以捕获引用了不存在的属性时的错误
+eg:
+ interface Obj{
+color?:string;//可选属性
+name?:string;
+id:number;
+readonly x：string;//只读属性，只能在对象刚创建时修改其值
+[propName；string ]:any //索引签名    可以避开额外属性检查  这里表示  这个对象可以有任意数量的属性，只要不是已经被定义了的属性，那么无所谓其类型是什么
+}
+
+
+tips: ReadonlyArray<T> 去掉了数组的可变方法，确保数组创建后不可被更改，
+ eg:
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!  这里即使赋值给别的普通数组也不可操作，只能用断言重写
+a= ro as number[];//ok 
+==
+readonly 和 const 
+作为属性使用：readonly 
+最为变量使用：const;
+==
+额外属性检查     会检查 接口中未被定义的属性，当他们被赋值给变量或者作为参数传递时，如果这个对象存在任何目标类型不包含的属性时，都会报错  
+
+绕开额外属性检查可以使用类型断言 as 
+或者字符串索引签名
+或者将这个对象赋值给另一个变量
+==
+接口可以定义函数类型  
+可以描述一个方法 ，在类中去实现他
+ java 中接口是抽象的，普通类实现了必须就实现所有接口方法   且接口中一般没有变量  
+ts中  接口可以定义属性，可以定义函数   使用<b>调用签名</b>
+
+
+eg ：
+interface SearchFun{
+(a：String，b: String):boolean;// 引入签名
+[index: number]:string// 可索引的类型    index:是索引签名表示 当用number去索引这个searchfun 时会得到一个string类型的返回值 
+}
+
+let someX :SearchFun；
+someX=function(a:string,b:string){
+return a.search(b)>-1;
+}// 参数名和接口中的名字可以不匹配  只要求类型兼容   如果不指定类型，ts也会推断出类型   返回值类型如果与接口定义不符   类型检查器会报错
+
+==
+索引签名： 字符串和数字 可以同时使用（but 数字索引的返回值必须是字符串索引返回值类型的子类型，因为js会吧这个数字索引变成字符串索引  因此 需要两者一致
+）
+
+==接口的实现  使用implements  
+
+接口可以描述js 中多种类型
+
+====
+类
+继承    
+修饰符  public  private protected//不能在类外使用  构造函数可以使用protected 修饰，只能被继承使用 readonly(将属性设置为只读，在声明或是构造函数里初始化)
+
+静态属性 与类的实例化上的属性相对 与java相同，使用static修饰，类名直接调用 （注意，是在类的内内部调用） 不能使用泛型约束
+ ==
+抽象类  abstract 修饰，不会被直接实例化，可以包含成员的实现细节  有抽象方法也有非抽象方法
+let department: Department; // 允许创建一个对抽象类型的引用  也是一个限制
+department = new Department(); // 错误: 不能创建一个抽象类的实例
+department = new AccountingDepartment(); // 允许对一个抽象子类进行实例化和赋值
+department.printName();
+department.printMeeting();
+department.generateReports(); // 错误: 方法在声明的抽象类中不存在
+
+
+====
+函数
+给函数添加类型
+函数的类型由参数类型和返回值组成
+有名字的函数:
+function add(x:number,y:number):number{
+return x+y;}
+
+匿名函数:
+let a:(x:number,y:number) =>number =function(x:number,y:number):number{return x+y};//这是一个完整的函数类型
+// => 表明了返回值类型  返回值类型是函数类型的必要部分，没有也要使用void 而不能留空
+
+==
+推断类型：
+
+可选参数：
+
+ts 中的每一个参数都是必须的，传递给一个函数的参数个数必须与函数期望的参数个数一致
+js不同，参数可选，没传的时候 他的值就是undefined  
+ts 如果想穿可选参数  使用？ 可选参数需要放在必须参数的后面 
+function buildname(name：string,name2?:string){
+}
+==
+默认参数：
+
+ 也可以为参数提供一个默认值来实现可选参数  当用户不传或传了undefined 事使用 这时可以不放在必须参数的后面 如果这个带默认值的参数放在了必须参数的前面，那么用户必须传入一个undefined 值来获得默认值
+function buildname(name：string,name2="lin"){
+}
+
+剩余参数：
+js中 有arguments 来访问所有传入的参数
+ts中：...+参数数组名+“：”数组类型
+eg:
+function buildName(firstName: string, ...restOfName: string[]) {
+  return firstName + " " + restOfName.join(" ");
+}
+
+let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
+
+==
+this和箭头函数
+js中this 有时指代上下文会出错，可以使用箭头函数，箭头函数能保存创建时的this 值而不是调用时候的值
+
+==
+重载
+==
+泛型identity<T> 使用：
+传入所有的参数
+let output = identity<string>("myString"); 
+类型推论，编译器会根据传入的参数自动来确定t的类型
+let output = identity("myString");  
+====
+枚举  数字（读取运行时的值）和字符串 异构枚举（数字和字符串混合）
+
+
+====
+symbol    
+ECM2015 成为原生类型
+Symbol 创建
+不能改变且唯一
+可以被用作对象属性的键
+
+====
+模块
+//https://www.tslang.cn/docs/handbook/modules.html
+ECM2015  引入
+导出与导入的问题
+
+
+
+
+
+
+
+
+
+
+
+
+
