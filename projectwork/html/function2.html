@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>25.function</title>
+    <script>
+        function f1() {
+            console.log("这是命名函数1");
+        }
+
+        f1();
+
+        function f1() {
+            console.log("这是命名函数1再次命名");
+        }
+
+        f1();//这里调用了两次  但是两次都调用的是第二次的
+        //对命名函数来说 只要覆盖了 在哪里调用都是覆盖的函数 主要是重名
+
+        var f2 = function () {
+            console.log("这是匿名函数2");
+
+        }
+        f2();
+        f2 = function () {
+            console.log("这是匿名函数2-再次赋值");
+
+        }
+        f2();
+        //函数的自调用：
+        (function () {
+            console.log("这是函数的自调用")
+        })();
+        //函数类型
+        console.log("函数的数据类型：" + typeof f1);
+
+        //将函数作为参数：
+        /**
+         *
+         * @param fn 这里是将一个函数作为参数传入
+         * 注意：fn 是函数的代码
+         * fn() 是函数的调用，并且返回一个值
+         */
+        function f4(fn) {
+            console.log("函数作为参数的调用：")
+
+            fn();//传入函数并且 调用这个函数
+        }
+
+        f4(f1);//这里传入f1 的代码
+        // 函数作为返回值使用
+        function f5() {
+            console.log("返回一个函数");
+            return function () {
+                console.log("这是一个被返回的函数");
+
+            }
+        }
+
+        var ff5 = f5();//这里返回的是一串函数代码，也就是说这里的ff5 已经是一个函数了
+        ff5();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

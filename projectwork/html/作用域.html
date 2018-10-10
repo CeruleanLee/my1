@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>28.Title</title>
+    <script>
+        var str=prompt("请输入");
+        if (str==""){
+            console.log("输入please");
+
+        } else{
+            //输入的又内容  判断是否数字
+            console.log(isNaN(str));// 字符串 true  数字 -false
+if (!isNaN(str)) {
+    console.log("输入的是数字");
+
+}else{
+    console.log("输入的不是数字");
+
+}
+        }
+        // console.log(isNaN(str));
+
+
+
+        //作用域
+        var a = 10;// 0级作用域
+        function f1() {//属于0级作用域内
+            var a = 20;// 1级作用域
+
+            function f2() {//属于1级作用域内
+                var a = 30;// 2级作用域
+
+                function f3() {//属于2级作用域内
+                    var a = 50;// 3级作用域
+
+                    console.log(a)
+                }
+
+                f3();
+            }
+
+            f2();
+        }
+
+        f1();
+        // 作用域链:就是当使用同名变量时 不断往上去找
+        //预解析  把变量声明提前，函数声明提前
+        function f4() {
+            console.log(num);//undefined
+            var num = 10;// 变量的提升不会超出作用域范围  因此后面的会报错
+        }
+
+        f4();
+        // console.log(num);//报错
+
+
+        console.log(xy);// xy函数的代码
+        function xy() {
+            console.log("xyxyxy");
+        }
+
+        var xy = 1;
+        console.log(xy);//1
+
+        //解析过来的顺序：
+
+        var xy;
+
+        function xy() {
+            console.log("xyxyxy");
+        }
+
+        //同时提升的话，变量在上面
+        console.log(xy);// xy函数的代码
+
+        xy = 1;
+        console.log(xy);//1
+        console.log("==============");
+
+        f6();
+        console.log(c1);
+        console.log(b1);
+
+        // console.log(a1);
+
+        function f6() {
+            var a1 = b1 = c1 = 9;
+            console.log("f-" + a1);//声明 赋值
+            console.log("f-" + b1);//9
+            console.log("f-" + c1);//9
+        }
+
+        //=============执行的顺序
+        function f6() {//提升
+            var a1;
+            a1 = 9;//局部变量
+            b1 = 9;//隐士全局变量
+            c1 = 9;//隐士全局变量
+            console.log("f-" + a1);//声明 赋值
+            console.log("f-" + b1);//9
+            console.log("f-" + c1);//9
+        }
+
+        f6();
+        console.log(c1);
+        console.log(b1);
+        // console.log(a1);//拿不到
+
+
+    </script>
+    <script>
+        function f4() {
+            console.log("script2");//就算重名  上面的也不会调用到这里的函数
+        }
+
+        f4();
+        f8();// 报错
+        var f8 = function () {
+            console.log("===" + a);
+            var a = 10;
+        };
+        //=======解析顺序：
+        // var f1;
+        // f1();
+        // f1=function () {
+        //     console.log("a");
+        //     var a=10;
+        // };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

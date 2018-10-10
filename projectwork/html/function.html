@@ -16,29 +16,149 @@
 
         //原的面积
         function f1(r) {
-            return Math.PI*r*r;
+            return Math.PI * r * r;
         }
+
         console.log(f1(2));
+
         //一个数是不是质数   只能被1和本身整除
         function f2(x) {
-            var arr=[];
+            var arr = [];
             for (let i = 2; i < x; i++) {
-                var isPrime=true;
-
-                for (let j = 2; j < i; j++) {
+                var isPrime = true;
+                for (let j = 2; j < i; j++) {//和所有的数字除一遍
                     if (i % j == 0) {
-                        isPrime=false;
+                        isPrime = false;
 
                         break;
                     }
                 }
                 if (isPrime) {
-                    arr[arr.length]=i;
+                    arr[arr.length] = i;
                 }
             }
             return arr;
         }
-        console.log("素数："+f2(20));
+
+        // 判读一个数字是不是质数
+        function f3(num) {
+            for (let i = 2; i < num; i++) {
+                if (num % i == 0) {//有一个数字整除了
+                    return false;
+                }
+            }
+            return true;
+        }
+        // 判读一个数字是不是质数  只需要算一半
+        function f33(num) {
+            for (let i = 2; i <= num/2; i++) {
+                if (num % i == 0) {//有一个数字整除了
+                    return false;
+                }
+            }
+            return true;
+        }
+        // 判读一个数字是不是质数  算平方根 num/2 取平方根+1
+        function f333(num) {
+            for (let i = 2; i <= num/2; i++) {
+                if (num % i == 0) {//有一个数字整除了
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        console.log("素数：" + f2(20));
+
+        // 反转数组
+        function reverseArray(array) {
+            for (let i = 0; i < array.length / 2; i++) {
+                var temp = array[i];
+                array[i] = array[array.length - 1 - i];
+                array[array.length - 1 - i] = temp;
+
+            }
+            return array;
+        }
+
+        console.log("反转" + reverseArray([0, 1, 2, 3, 4, 5, 6]));
+
+        // 冒泡排序
+        function maopao(array) {
+            for (let i = 0; i < array.length - 1; i++) {//轮数
+                for (let j = 0; j < array.length - 1 - i; j++) {
+                    if (array[j] > array[j + 1]) {
+                        var temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+                    }//end if
+                }//end for
+
+            }
+            return array;//数组对象之后这里的return 可以不用写 后见
+        }
+
+        console.log("冒泡" + maopao([10, 12, 23, 43, 4, 35, 6]));
+//求数字阶乘1*2*3*4
+        function getjiecheng(num) {
+            var result = 1;
+            for (let i = 0; i < num; i++) {
+                result *= num;
+            }
+            return result;
+        }
+
+        // 求斐波那契数列  1 1 2 3 5 8 13 21 34 55 89 144  第三个数是前两个数之和
+        /**
+         *
+         * @param num 第几个斐波那契
+         */
+        function getFeiBo(num) {
+            var num1 = 1;
+            var num2 = 1;
+            var sum = 0;
+            for (let i = 3; i <= num; i++) {
+                sum = num1 + num2;
+                num1 = num2;
+                num2 = sum;
+            }
+            return sum;
+        }
+
+        console.log("第12个斐波那契数：" + getFeiBo(12));
+
+        //根据输入的年月日 计算是一年中的第几天
+        function getYearDays(year, month, day) {
+            var days = day;
+            if (month == 1) {//一月直接返回
+                return days;
+            }
+            //每个月的天数
+            var monthArray = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            for (let i = 0; i < month - 1; i++) {
+                days += monthArray[i];
+            }
+//闰年 且 大于2月
+            if (month > 2 && isLeapYear(year)) {
+                days++;
+            }
+            return days;
+        }
+
+        console.log("2018-12-30:" + getYearDays(2018, 12, 30));
+
+        /**
+         * 公历闰年的简单计算方法（符合以下条件之一的年份即为闰年，反之则是平年）
+         1.能被4整除而不能被100整除。
+         2.能被100整除也能被400整除。
+         (1)如果是整百的年份,能被400整除的,是闰年;(2)如果不是整百的年份,能被4整除的,也是闰年
+         * @param year
+         * @returns {boolean}
+         */
+        function isLeapYear(year) {
+            return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+        }
+
 
     </script>
 </head>

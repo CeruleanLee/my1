@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>24.argument</title>
+    <script>
+        /**
+         * 计算n个数字的和
+         * @returns {number}
+         * arguments 在不知道用户是否传入参数或者传入了几个参数是可以使用
+         * 相当于一个数组，函数中当做数组在使用，但事实上是一个伪数组
+         */
+        function f1() {
+            var sum=0;
+            for (let i = 0; i < arguments.length; i++) {
+                sum+=arguments[i];
+            }
+            return sum;
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
