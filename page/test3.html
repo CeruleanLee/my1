@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test3</title>
+    <style>
+        input{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <form id="form" enctype="multipart/form-data" method="post" onsubmit="return submit() ">
+        <input type="text" id="name" name="name">
+        <br>
+        <input type="password" id="psd" name="password">
+        <br>
+        <input type="file"  >
+        <br>
+
+        <button type="submit">commit
+        </button>
+    </form>
+</div>
+<script>
+
+    function submit() {
+        let psd = document.getElementById("psd");
+        psd = toMD5(psd);
+
+    }
+
+
+</script>
+
+</body>
+</html>
