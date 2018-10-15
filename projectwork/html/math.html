@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        /**
+         * 获取十六进制颜色值
+         * @returns {string}
+         */
+        function getcolor() {
+            var str="#";
+            var arr=[];
+            for (let i = 0; i < 6; i++) {
+                var num=parseInt(Math.random()*16);
+                str+=arr[num];
+
+            }
+
+            return str;
+        }
+
+        window.onload=function () {
+            document.getElementById("").style.backgroundColor=getcolor();
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>
