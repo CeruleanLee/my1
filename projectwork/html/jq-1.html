@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none; /* 去掉ul前面的符号 */
+        }
+
+        .wrap {
+            width: 500px;
+            height: 30px;
+
+            padding-left: 10px;
+            background-color: #5d9ab2;
+
+        }
+
+        .wrap li {
+            /*wrap 的所有后代li*/
+            background-color: aquamarine;
+
+        }
+
+        .wrap > ul > li {
+            /*wrap 的所有子代ul的子代li*/
+
+            float: left; /* 向左漂移，将竖排变为横排 */
+            margin-left: 10px;
+            position: relative;
+        }
+
+        .wrap a {
+            /*warp的所有后代a*/
+            display: block;
+            height: 30px;
+            width: 100px;
+            text-decoration: red; /* 不显示超链接下划线 */
+            color: yellow;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .wrap li ul {
+            /*warp的所有后代li的后代ul*/
+
+            position: absolute;
+            top: 30px;
+            display: none;
+        }
+
+        .wrap2 {
+            margin: 100px auto 0;
+            width: 630px;
+            height: 394px;
+            padding: 10px 0 0 10px;
+            background-color: pink;
+            border: 1px solid #5d9ab2;
+            overflow: hidden;
+        }
+
+        .wrap2 li {
+            float: left;
+            margin: 0 10px 10px 0;
+        }
+
+        .wrap2 img {
+            display: block; /* 此元素将显示为块级元素，此元素前后会带有换行符 */
+            border: 0;
+        }
+
+        .parentWrap {
+            width: 200px;
+            text-align: center
+        }
+
+        .menuGroup {
+            border: 1px solid #5d9ab2;
+            background-color: burlywood;
+        }
+
+        .groupTitle {
+            display: block;
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            border-bottom: 1px solid red;
+            cursor: progress;
+        / / 光标类型
+        }
+
+        .menuGroup > div {
+            height: 100px;
+            background-color: greenyellow;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="list1">
+    <li>我是第1个</li>
+    <li>我是第2个</li>
+    <li>我是第3个</li>
+    <li>我是第4个</li>
+    <li>我是第5个</li>
+    <li>我是第6个</li>
+    <li>我是第7个</li>
+    <li>我是第8个</li>
+    <li>我是第9个</li>
+    <li>我是第10个</li>
+</ul>
+<p>筛选选择器:（函数）</p>
+
+<p>举个例子：下拉菜单</p>
+
+<div class="wrap">
+    <ul>
+        <li>
+            <a href="javascript:void(0);">一级菜单1</a>
+            <ul class="ul">
+                <li><a href="javascript:void(0);">二级菜单11</a></li>
+                <li><a href="javascript:void(0);">二级菜单12</a></li>
+                <li><a href="javascript:void(0);">二级菜单13</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:void(0);">一级菜单2</a>
+            <ul>
+                <li><a href="javascript:void(0);">二级菜单21</a></li>
+                <li><a href="javascript:void(0);">二级菜单22</a></li>
+                <li><a href="javascript:void(0);">二级菜单23</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:void(0);">一级菜单3</a>
+            <ul>
+                <li><a href="javascript:void(0);">二级菜单31</a></li>
+                <li><a href="javascript:void(0);">二级菜单32</a></li>
+                <li><a href="javascript:void(0);">二级菜单33</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div style="height: 300px"></div>
+<div class="wrap2">
+    <ul>
+        <li><a href="javascript:void(0);"><img src="../img/01.jpg" alt=""></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/02.jpg" alt=""></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/03.jpg" alt=""></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/04.jpg" alt=""></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/05.jpg" alt=""></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/06.jpg" alt=""></a></li>
+    </ul>
+</div>
+<div class="wrap3">
+    <ul class="parentWrap">
+        <li class="menuGroup">
+            <span class="groupTitle">标题1</span>
+            <div>弹出div1</div>
+        </li>
+        <li class="menuGroup">
+            <span class="groupTitle">标题2</span>
+            <div>弹出div2</div>
+        </li>
+        <li class="menuGroup">
+            <span class="groupTitle">标题3</span>
+            <div>弹出div3</div>
+        </li>
+        <li class="menuGroup">
+            <span class="groupTitle">标题4</span>
+            <div>弹出div4</div>
+        </li>
+        <li class="menuGroup">
+            <span class="groupTitle">标题5</span>
+            <div>弹出div5</div>
+        </li>
+    </ul>
+
+
+</div>
+<script>
+    $(function () {
+        $("#list1>li:even").css("backgroundColor", "red");
+        $("ul>li:odd").get(1).style.backgroundColor = "#FFCC80"
+        var $li = $(".wrap>ul>li");
+        $li.mouseenter(function () {
+            //让当前ul显示出来  是一个dom对象
+            // $(this li).//这样写不行哦 不能这样找当前对象的子元素
+            $(this).children("ul").show();
+        });
+        $li.mouseleave(function () {
+            //让当前ul显示出来  是一个dom对象
+            // $(this li).//这样写不行哦 不能这样找当前对象的子元素
+            $(this).children("ul").hide();
+        });
+        // var $li = $(".wrap>ul>li");
+        //
+        // //给li注册鼠标经过事件，让自己的ul显示出来
+        // $li.mouseenter(function () {
+        //     //找到所有的儿子，并且还得是ul
+        //     $(this).children("ul").show();
+        // });
+        //
+        // $li.mouseleave(function () {
+        //     $(this).children("ul").hide();
+        // });
+//高亮
+        $(".wrap2>ul>li").mouseenter(function () {
+            //定义元素的不透明度。
+            // 当一个元素定义了opacity属性，并且值小于1时，那么它的子元素也会同样拥有相同的透明度。
+// 当一个元素定义了opacity属性，并且值小于1时，将会创建一个新的堆叠上下文；如果其它的元素为非定位元素，那么该元素的堆叠级别将会高于其它元素
+            //sibling 找同辈元素 自己的亮度是1 兄弟变成0.5
+            $(this).css("opacity", "1").siblings().css("opacity", "0.5");//
+        });
+        $(".wrap2").mouseleave(function () {
+            //找到所有的li:
+            // $("li")
+            // $(".wrap2 li")
+            //
+            // $(".wrap2>ul>li")
+
+            // $(this).children().children().css("opacity","1");/
+            $(this).find("li").css("opacity", "1");
+
+        });
+//=============================
+        $(".groupTitle").click(function () {
+            //链式变成 因为在一直返回jq对象
+            //this的下一个兄弟也就是div显示，然后他的父类li 的兄弟li 的子类div
+            $(this).next().slideDown(100).parent().siblings().children("div").slideUp(100);
+        });
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
