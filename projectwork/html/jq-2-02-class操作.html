@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none; /* 去掉ul前面的符号 */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .basic {
+            font-size: 25px;
+            background-color: burlywood;
+
+        }
+
+        .bigger {
+            font-size: 45px;
+        }
+    </style>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <input type="button" value="删除类" id="btn">
+    <div id="div0" class="aa bb cc"></div>
+
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <input type="button" value="添加类1" id="btn1">
+    <input type="button" value="添加类2" id="btn2">
+    <input type="button" value="移除类2" id="btn3">
+    <input type="button" value="判断类2" id="btn4">
+    <input type="button" value="切换类2" id="btn5">
+
+</div>
+<script>
+    $(function () {
+        //==========js 演示删除cc 类
+        var btn = document.getElementById("btn");
+        var div0 = document.getElementById("div0");
+        btn.onclick = function () {
+            div0.className = "aa bb";
+            //目的仅仅是操作cc 类，其他的都不变
+        }
+        $("#btn1").click(function () {
+            $("li").addClass("basic");
+        });
+        $("input").eq(2).click(function () {
+            $("li").addClass("bigger");
+
+        });
+        $("input").eq(3).click(function () {
+            $("li").removeClass("bigger");
+
+        });
+        $("input").eq(4).click(function () {
+           console.log( $("li").hasClass("bigger"));
+
+        });
+        $("input").eq(5).click(function () {
+           // if( $("li").hasClass("bigger")){
+           //     $("li").removeClass("bigger");
+           //
+           // }else{
+           //     $("li").addClass("bigger");
+           //
+           // };
+            $("li").toggleClass("bigger");
+        });
+    });
+
+
+</script>
+
+
+</body>
+</html>

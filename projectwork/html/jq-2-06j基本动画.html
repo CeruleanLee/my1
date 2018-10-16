@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none; /* 去掉ul前面的符号 */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .slider {
+            height: 340px;
+            width: 790px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .slider li {
+            /*
+对象脱离常规流，此时偏移属性参照的是离自身最近的定位祖先元素，如果没有定位的祖先元素，则一直回溯到body元素。盒子的偏移位置不影响常规流中的任何元素，其margin不与其他任何margin折叠*/
+            position: absolute;
+            display: none;
+        }
+
+        .slider li:first-child {
+            display: block;
+        }
+
+        .arrow {
+            display: none;
+        }
+
+        .slider:hover .arrow {
+            display: block;
+        }
+
+        .arrow-right, .arrow-left {
+            font-family: "微软雅黑";
+            width: 30px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 60px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .arrow-right:hover, .arrow-left:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .arrow-left {
+            left: 0;
+        }
+
+        .arrow-right {
+            right: 0;
+        }
+
+        #box ul {
+            list-style: none;
+            width: 1300px;
+        }
+        #box {
+            width: 1200px;
+            height: 400px;
+            border: 2px solid red;
+            margin: 100px auto;
+        }
+
+        #box li {
+            width: 240px;
+            height: 400px;
+            /*border: 1px solid #000;*/
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <input type="button" value="show">
+    <input type="button" value="hide">
+    <input type="button" value="slide up">
+    <input type="button" value="slide down">
+    <input type="button" value="slide toggle">
+    <input type="button" value="fade in">
+    <input type="button" value="fade out">
+    <input type="button" value="fade toggle">
+    <input type="button" value="start">
+    <input type="button" value="stop">
+    <div id="div"
+         style="background-color: cornflowerblue ;width: 200px; height: 150px;display: none; position: absolute;"></div>
+
+</div>
+<script>
+    $(function () {
+        $("input").eq(0).click(function () {
+            $("#div").show(2000, function () {
+                console.log("show finish");
+            })
+        });
+        $("input").eq(1).click(function () {
+            $("#div").hide(2000, function () {
+                console.log("hide finish");
+            })
+        });
+        $("input").eq(2).click(function () {
+            $("#div").slideUp(1000, function () {
+                console.log("slideUp finish");
+            })
+        });
+        $("input").eq(3).click(function () {
+            $("#div").slideDown(1000)
+        });
+        $("input").eq(4).click(function () {
+            $("#div").slideToggle(1000)
+        });
+        $("input").eq(5).click(function () {
+            $("#div").fadeIn(1000)
+        });
+        $("input").eq(6).click(function () {
+            $("#div").fadeOut(1000)
+        });
+        $("input").eq(7).click(function () {
+            $("#div").fadeToggle(1000)
+        });
+        $("input").eq(8).click(function () {
+            console.log("animate");
+
+            $("#div").animate({left: 800}).animate({top:0});
+        });
+    });
+
+
+</script>
+<div class="slider">
+    <ul>
+        <li><a href="#"><img src="../img/jd/1.jpg" alt=""></a></li>
+        <li><a href="#"><img src="../img/jd/2.jpg" alt=""></a></li>
+        <li><a href="#"><img src="../img/jd/3.jpg" alt=""></a></li>
+        <li><a href="#"><img src="../img/jd/4.jpg" alt=""></a></li>
+        <li><a href="#"><img src="../img/jd/5.jpg" alt=""></a></li>
+        <li><a href="#"><img src="../img/jd/6.jpg" alt=""></a></li>
+        <li><a href="#"><img src="../img/jd/7.jpg" alt=""></a></li>
+        <li><a href="#"><img src="../img/jd/8.jpg" alt=""></a></li>
+    </ul>
+    <div class="arrow">
+        <span class="arrow-left">&lt;</span>
+        <span class="arrow-right">&gt;</span>
+    </div>
+</div>
+<script>
+    var count = 0;
+    $(".arrow-right").click(function () {
+        count++;
+        $(".slider li").eq(count).fadeIn().siblings("li").fadeOut();
+        if (count == $(".slider li").length) count = 0;
+    });
+    $(".arrow-left").click(function () {
+        count--;
+        $(".slider li").eq(count).fadeIn().siblings("li").fadeOut();
+        if (count == -1) count = $(".slider li").length;
+    });
+
+
+</script>
+<div id="box">
+    <ul id="list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+    var $li = $("#box li");
+    for (let i = 0; i < $li.length; i++) {
+        $li.eq(i).css("backgroundImage", "url(../img/mi/" + (i + 1) + ".jpg)");
+    }
+    $li.mouseenter(function () {
+    $(this).animate({width:"800px"}).siblings().animate({width:100});
+    }).mouseleave(function () {
+        $(this).animate({width:"240px"});
+    });
+
+
+</script>
+</body>
+</html>

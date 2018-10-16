@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none; /* 去掉ul前面的符号 */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .wrap {
+            width: 300px;
+            margin: 100px auto 0;
+        }
+
+        table {
+            border: 1px solid #dddddd;
+            /*设置或检索当表格边框独立时，行和单元格的边框在横向和纵向上的间距*/
+            border-spacing: 0;
+            /*设置或检索表格的行和单元格的边是合并还是独立。*/
+            border-collapse: collapse;
+            /*  collapse: 相邻边被合并 separate: 边框独立*/
+            width: 300px;
+
+        }
+
+        th, td {
+            border: 1px solid #d0d0d0;
+            padding: 10px;
+            color: #404040;
+        }
+
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #404040;
+
+        }
+
+        td {
+            font: 14px "微软雅黑";
+
+        }
+
+        tbody tr {
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+            text-align: center;
+            color: #45678d;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <input type="checkbox" id="j_cball">
+            </th>
+            <th>菜名</th>
+            <th>饭店</th>
+        </tr>
+        </thead>
+        <tbody id="j_tb">
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>红烧肉</td>
+            <td>饭店1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>红烧肉2</td>
+            <td>饭店2</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>红烧肉3</td>
+            <td>饭店3</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>红烧肉4</td>
+            <td>饭店4</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<script>
+    $(function () {
+        $("#j_cball").click(function () {
+            // $("#j_tb input") jtb 下的input
+            $("#j_tb>tr>td>input").prop("checked", $(this).prop("checked"));
+        });
+        $("#j_tb input").click(function () {
+            var length=$("#j_tb input").length;
+            var checklength=$("#j_tb input:checked").length;
+            if (length==checklength){
+                $("#j_cball").prop("checked",true);
+            } else{
+                $("#j_cball").prop("checked",false);
+
+            }
+        });
+
+    });
+
+
+</script>
+
+</body>
+</html>
