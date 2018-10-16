@@ -142,7 +142,12 @@
         $("input").eq(8).click(function () {
             console.log("animate");
 
-            $("#div").animate({left: 800}).animate({top:0});
+            $("#div").animate({left: 800},2000).animate({top:0});
+        });
+        $("input").eq(9).click(function () {
+            console.log("animate");
+
+            $("#div").stop();
         });
     });
 
@@ -194,9 +199,9 @@
         $li.eq(i).css("backgroundImage", "url(../img/mi/" + (i + 1) + ".jpg)");
     }
     $li.mouseenter(function () {
-    $(this).animate({width:"800px"}).siblings().animate({width:100});
+    $(this).stop().animate({width:"800px"}).siblings().stop().animate({width:100});
     }).mouseleave(function () {
-        $(this).animate({width:"240px"});
+        $(this).stop().animate({width:"240px"});
     });
 
 
