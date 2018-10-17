@@ -47,7 +47,7 @@ push  to   genymotion
 android sdk –plateform-tools文件夹的目录下打开命令行窗口 push
 adb push G:\Awork\ABuglyStockOperation0820\app\build\bakApk\app-0822-17-10-52\somp_scyd_cs0820_v\app-somp_scyd_cs0820_v-release.apk /sdcard/Download/
 
-adb push C:\Users\admin\Desktop\app-release.apk /sdcard/Download/
+adb push C:\Users\admin\Desktop\system\s2.apk /sdcard/Download/
 
 
 adb push G:\Alyt\Demo\ws\IonicApp\m3\myApp\platforms\android\app\build\outputs\apk\debug\app-debug.apk /sdcard/Download/
@@ -59,6 +59,10 @@ adb push G:\Alyt\Demo\ws\IonicApp\m3\myown\myApp\platforms\android\app\build\out
 
 
 adb push E:\About Apk\ReleaseApk\0903\sh_qdzc_cs_0803_v\release\sh_qdzc_cs_0903_v1.0.8.apk /sdcard/Download/
+
+打包系统应用
+C:\Users\admin\Desktop\system>java -jar signapk.jar platform.x509.pem platform.pk8 somp.apk s2.apk
+
 
 
 ws配置
