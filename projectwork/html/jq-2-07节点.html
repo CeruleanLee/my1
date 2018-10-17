@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none; /* 去掉ul前面的符号 */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        select {
+            width: 200px;
+            height: 200px;
+            background-color: #d0d0d0;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        /*//指定对象为内联块元素。（CSS2）*/
+        .btn-box {
+            width: 20px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /*设置元素的垂直对齐方式 top	把元素的顶端与行中最高元素的顶端对齐*/
+        #weibo {
+            width: 600px;
+            margin: 100px auto;
+            border: 1px solid green;
+            padding: 20px;
+
+        }
+
+        /*outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。*/
+        /*规定可以由用户调整 div 元素的大小*/
+        textarea {
+            width: 450px;
+            height: 160px;
+            outline: none;
+            resize: none;
+        }
+
+        #weiboli {
+            width: 450px;
+            padding-left: 80px;
+
+        }
+
+        #weiboli li {
+            line-height: 25px;
+            border-bottom: 1px dashed #0099cc;
+            text-align: center;
+        }
+
+        input {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    // 动态添加节点
+    <!--<a href="http://www.baidu.com" target="_blank">百度一下</a>-->
+    <div id="box" style="background-color: #5d9ab2; width: 200px; height: 200px">
+
+    </div>
+</div>
+<div>
+    城市选择案例：
+    <!--multiple 允许在下拉列表中进行多选-->
+    <select name="src-city" id="src-city" multiple>
+        <option value="1">北京</option>
+        <option value="2">上海</option>
+        <option value="3">成都</option>
+        <option value="4">深圳</option>
+        <option value="5">广州</option>
+    </select>
+    <div class="btn-box">
+        <button id="btn1">&gt;&gt;</button>
+        <button id="btn2">&lt;&lt;</button>
+        <button id="btn3">&gt</button>
+        <button id="btn4">&lt;</button>
+    </div>
+    <select name="tar-city" id="tar-city" multiple></select>
+
+</div>
+<div id="weibo">
+    <p>微博发布案例</p>
+    <textarea name="" id="txt" cols="30" rows="10"></textarea>
+    <button id="btnpublic">发布</button>
+    <ul id="weiboli"></ul>
+</div>
+<script>
+    $(function () {
+        //js 方法：
+        var box = document.getElementById("box");
+        var a = document.createElement("a");
+        box.appendChild(a);
+        a.setAttribute("href", "http://www.baidu.com");
+        a.setAttribute("target", "_blank");
+        a.innerText = "百度一下";
+        // jQuery 方法
+        $("#box").append('<a href="http://www.baidu.com" target="_blank">百度一下2</a>');
+
+        $("#btn1").click(function () {
+            $("#src-city>option").appendTo("#tar-city");
+        });
+        $("#btn2").click(function () {
+            // $("#tar-city>option").appendTo($("#src-city"));
+            $("#src-city").append($("#tar-city>option"));
+        });
+        $("#btn3").click(function () {
+            $("#src-city>option:selected").appendTo("#tar-city");
+        });
+        $("#btn4").click(function () {
+            // $("#tar-city>option").appendTo($("#src-city"));
+            $("#src-city").append($("#tar-city>option:selected"));
+        });
+        /*微博*/
+        $("#btnpublic").click(function () {
+            if ($("#txt").val().trim().length==0)return;
+
+            $("<li></li>").text($("#txt").val()).prependTo($("#weiboli"));
+            $("#txt").val("");
+        });
+
+    });
+
+
+</script>
+</body>
+</html>

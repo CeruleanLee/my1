@@ -89,6 +89,51 @@
             /*border: 1px solid #000;*/
             float: left;
         }
+        /*音乐导航*/
+        #nav{
+            width: 900px;
+            height: 60px;
+            background-color: #5d9ab2;
+            margin: 0 auto;
+        }
+        #nav li{
+            width: 100px;
+            height: 60px;
+            float: left;
+            position: relative;
+            overflow: hidden;
+        }
+        /*
+absolute
+生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
+
+元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+        fix 相对于浏览器窗口来对元素进行定位
+
+        relative 相对定位会按照元素的原始位置对该元素进行移动。
+
+样式 "left:-20px" 从元素的原始左侧位置减去 20 像素。
+
+样式 "left:20px" 向元素的原始左侧位置增加 20 像素*/
+        #nav a{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-size: 24px;
+            color: #f899f1;
+            text-align: center;
+            line-height: 60px;
+            text-decoration: none;
+            z-index:2;
+        }
+        /*z-index  可被用于将在一个元素放置于另一元素之后。  越小优先级越低 会被盖在底下*/
+    #nav span{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: yellowgreen;
+        top: 60px;
+    }
     </style>
 </head>
 <body>
@@ -205,6 +250,48 @@
     });
 
 
+</script>
+
+<div id="nav">
+    <ul>
+        <li><a href="javascript:void(0)">导航1</a><span></span></li>
+        <li><a href="javascript:void(0)">导航2</a><span></span></li>
+        <li><a href="javascript:void(0)">导航3</a><span></span></li>
+        <li><a href="javascript:void(0)">导航4</a><span></span></li>
+        <li><a href="javascript:void(0)">导航5</a><span></span></li>
+        <li><a href="javascript:void(0)">导航6</a><span></span></li>
+        <li><a href="javascript:void(0)">导航7</a><span></span></li>
+        <li><a href="javascript:void(0)">导航8</a><span></span></li>
+        <li><a href="javascript:void(0)">导航9</a><span></span></li>
+    </ul>
+    <div>
+        <!--controls="controls 默认的播放进度条-->
+        <audio src="../mp3/1.ogg"></audio>
+        <audio src="../mp3/2.ogg"></audio>
+        <audio src="../mp3/3.ogg"></audio>
+        <audio src="../mp3/4.ogg"></audio>
+        <audio src="../mp3/5.ogg"></audio>
+        <audio src="../mp3/6.ogg"></audio>
+        <audio src="../mp3/7.ogg"></audio>
+        <audio src="../mp3/8.ogg"></audio>
+        <audio src="../mp3/9.ogg"></audio>
+
+    </div>
+    <!--视频标签-->
+    <video src=""></video>
+<div style="height: 200px;"></div>
+
+</div>
+<script>
+    $("#nav li").mouseenter(function () {
+        $(this).children("span").stop().animate({top:0});
+        var idx = $(this).index();
+        //让对应的音乐播放, 音乐播放的方法时DOM对象。
+        $("audio").get(idx).load();
+        $("audio").get(idx).play();
+    }).mouseleave(function () {
+        $(this).children("span").stop().animate({top:60})
+    });
 </script>
 </body>
 </html>

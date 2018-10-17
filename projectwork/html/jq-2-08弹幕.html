@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 62%;
+            font-family: "微软雅黑";
+        }
+
+        #boxDom {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        /*fixed 生成绝对定位的元素，相对于浏览器窗口进行定位。
+
+元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。*/
+        #idDom {
+            background-color: #404040;
+            width: 100%;
+            height: 100px;
+            position: fixed;
+            bottom: 0px;
+
+        }
+
+        /*inline-block 行内块元素*/
+        /*absolute 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位*/
+        .content {
+
+            display: inline-block;
+            width: 430px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            margin: auto;
+
+        }
+
+        /*此元素会被显示为内联元素，元素前后没有换行符。*/
+        /*把元素的顶端与行中最低的元素的顶端对齐。*/
+        .title {
+            display: inline;
+            font-size: 3em;
+            vertical-align: center;
+            color: black;
+        }
+
+        .inputtext {
+            border: 1px dashed dodgerblue;
+            width: 300px;
+            height: 30px;
+            border-radius: 5px;
+            font-size: 2.4em;
+            margin: 10px;
+        }
+
+        .btn {
+            width: 60px;
+            height: 30px;
+            background-color: lightyellow;
+            color: mediumpurple;
+            font-size: 2.4em;
+            border: none;
+            text-align: center;
+        }
+
+        span {
+            width: 300px;
+            height: 40px;
+            position: absolute;
+            overflow: hidden;
+            color: #000;
+            font-size: 4em;
+            line-height: 1.5em;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div class="boxDom" id="boxDom">
+    <div id="idDom" class="idDom">
+        <div class="content">
+            <p class="title">吐槽</p>
+            <input type="text" class="inputtext" id="inputtext">
+            <button type="button" class="btn" id="btn">发射</button>
+        </div>
+    </div>
+
+
+</div>
+<script>
+    $(function () {
+
+        var colors = ["red", "green", "hotpink", "pink", "cyan", "yellowgreen", "purple", "deepskyblue"];
+        $("#btn").click(function () {
+            var randomColor = parseInt(Math.random() * colors.length);
+            var randomY = parseInt(Math.random() * 400);
+
+            $("<span></span>>").text($("#inputtext").val())
+                .css("color",colors[randomColor])
+                .css("left","1500px")
+                .css("top",randomY)
+                .animate({left:-500},10000,"linear",function(){//linear 匀速
+                    $(this).remove();
+                }).appendTo($("#boxDom"));
+            $("#inputtext").val("");//清空
+
+        });
+        /*事件的触发 后面会讲*/
+        $("#inputtext").keyup(function (e) {
+            if (e.keyCode==13)$("#btn").click();
+        });
+    });
+</script>
+</body>
+</html>
