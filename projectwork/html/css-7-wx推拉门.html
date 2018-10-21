@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tb</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url("../img/wx.jpg") repeat-x;
+        }
+
+        .nav li {
+            list-style: none;
+            float: left;
+            padding: 0 15px;
+            margin-top: 20px;
+        }
+
+        .nav a {
+            /*左边放左边圆角 文字向右走 padding*/
+            text-align: center;
+            /*转行内快 要不高度不起作用*/
+            display: inline-block;
+            background: url("../img/to.png") no-repeat;
+            padding-left: 15px;
+            color: white;
+            height: 33px;
+            text-decoration: none;
+            /*行高可以不给高*/
+            line-height: 33px;
+
+        }
+
+        .nav span {
+            height: 33px;
+            display: inline-block;
+            background: url("../img/to.png") no-repeat right;
+            padding-right: 15px;
+
+        }
+        /*.nav a:hover{*/
+            /*background-image: url("../img/ao.png");*/
+        /*}*/
+        /*!*鼠标经过时 span的变化*!*/
+        /*.nav a:hover span{*/
+            /*background-image: url("../img/ao.png");*/
+        /*}*/
+        .nav a:hover,.nav a:hover span{
+            background-image: url("../img/ao.png");
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul class="nav">
+        <li>
+            <a href="#"><span>首页</span></a>
+        </li>
+        <li>
+            <a href="#"><span>首页22222</span></a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

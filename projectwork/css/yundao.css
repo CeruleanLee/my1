@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+li {
+    list-style: none;
+}
+.clearfix:after {  content: ""; display: block; height: 0; clear: both; visibility: hidden;  }
+
+.clearfix {*zoom: 1;}   /* IE6、7 专有 */
+.header {
+    height: 100px;
+    background-color: #fff;
+}
+
+.inner {
+    background-color: white;
+    line-height: 100px;
+    width: 1200px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.logo {
+    float: left;
+}
+
+.nav {
+    float: right;
+}
+
+.nav ul {
+    overflow: hidden;
+}
+
+.nav li {
+    float: left;
+    margin: 0 20px;
+}
+
+.nav a {
+    color: #333;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #2288f6;
+}
+
+.banner {
+    height: 620px;
+    background-image: url(../img/banner.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.service, .case {
+    width: 1055px;
+    /*height: 700px;*/
+    background-color: #fafafa;
+    margin: 75px auto 0;
+
+}
+
+.service-hd {
+    border-top: 1px solid #cccccc;
+    margin: 0 25px; /*线左右  不能给宽 给了就会超出去父类*/
+}
+
+.service-hd h3 {
+    width: 167px;
+    height: 45px;
+    margin: -20px auto 0;
+}
+
+.service-hd p {
+    line-height: 26px;
+    font-size: 12px;
+    width: 831px;
+    color: #666;
+    text-align: center;
+    margin: 15px auto 0;
+}
+
+.service-bd {
+    margin-top: 40px;
+    overflow: hidden;
+
+}
+
+.service-bd li {
+    background-color: white;
+    width: 318px;
+    height: 510px;
+    float: left;
+    border: 1px solid #cccccc;
+}
+
+.service-bd li img {
+    margin: 40px 35px;
+}
+
+.service-bd h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+    height: 40px;
+
+}
+
+.service-bd li p {
+    font-size: 12px;
+    color: #666;
+    width: 235px;
+    margin: 0 auto;
+    line-height: 26px;
+
+}
+
+.service-bd li a {
+    width: 148px;
+    height: 38px;
+    background-color: orange;
+    border: 1px solid orange;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 30px auto 0;
+    line-height: 38px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.service-bd li a:hover {
+    background-color: white;
+    color: orange;
+}
+
+.yingxiao {
+    margin: 0 47px;
+}
+
+.case-bd-m {
+    margin: 0 40px;
+}
+
+.case-bd {
+    margin-top: 80px;
+    position: relative;
+
+}
+
+.case-bd li {
+    width: 325px;
+    height: 210px;
+    background-color: pink;
+    float: left;
+    position: relative;
+}
+
+.text {
+    height: 45px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    line-height: 45px;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.2) url("../img/fdj.png") center no-repeat;
+    top: 0;
+    left: 0;
+    display: none;
+}
+.case-bd li:hover .mask {
+    display: block;
+}
+.left,.right{
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    line-height: 60px;
+    border-radius: 50%;
+}
+.left{
+    left: -90px;
+}
+.right{
+    right:  -90px;
+}
+.case-bd a:hover{
+    background: rgba(0,0,0,0.4);
+
+}

@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+li {
+    list-style: none;
+}
+
+.message {
+    width: 908px;
+    border: 1px solid #ccc;
+    margin: 100px auto;
+    height: 340px;
+    background-color: #fff;
+    padding-left: 33px;
+}
+.message h4{
+margin-top: 40px;
+    height: 40px;
+}
+.message h4 a{
+    font-weight: normal;
+    color: rebeccapurple;
+}
+.message textarea{
+    width: 862px;
+    height: 162px;
+}
+.message input{
+   margin-top: 20px;
+}
+.message p{
+   margin-top: 20px;
+    color: #f00;
+    font-size: 12px;
+}
