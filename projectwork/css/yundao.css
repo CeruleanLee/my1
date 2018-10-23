@@ -10,9 +10,20 @@ body {
 li {
     list-style: none;
 }
-.clearfix:after {  content: ""; display: block; height: 0; clear: both; visibility: hidden;  }
 
-.clearfix {*zoom: 1;}   /* IE6、7 专有 */
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* IE6、7 专有 */
 .header {
     height: 100px;
     background-color: #fff;
@@ -59,7 +70,7 @@ li {
     background-repeat: no-repeat;
 }
 
-.service, .case {
+.service, .case, .footer {
     width: 1055px;
     /*height: 700px;*/
     background-color: #fafafa;
@@ -176,22 +187,25 @@ li {
     background: rgba(0, 0, 0, 0.2);
     font-size: 12px;
 }
-.mask{
+
+.mask {
     width: 100%;
     height: 100%;
     position: absolute;
-    background: rgba(0,0,0,0.2) url("../img/fdj.png") center no-repeat;
+    background: rgba(0, 0, 0, 0.2) url("../img/fdj.png") center no-repeat;
     top: 0;
     left: 0;
     display: none;
 }
+
 .case-bd li:hover .mask {
     display: block;
 }
-.left,.right{
+
+.left, .right {
     width: 60px;
     height: 60px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
     position: absolute;
     top: 50%;
     margin-top: -30px;
@@ -202,13 +216,72 @@ li {
     line-height: 60px;
     border-radius: 50%;
 }
-.left{
+
+.left {
     left: -90px;
 }
-.right{
-    right:  -90px;
-}
-.case-bd a:hover{
-    background: rgba(0,0,0,0.4);
 
+.right {
+    right: -90px;
+}
+
+.case-bd a:hover {
+    background: rgba(0, 0, 0, 0.4);
+
+}
+
+/*爷爷窄一点  切掉边框*/
+.media-bd {
+    width: 1040px;
+    height: 240px;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+/*父亲宽一点 让孩子可以放下*/
+.footer-ul {
+    width: 1050px;
+    height: 240px;
+
+}
+
+.footer-ul li {
+    width: 208px;
+    height: 60px;
+    background-color: white;
+    float: left;
+    text-align: center;
+    line-height: 80px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+.parenter {
+    height: 165px;
+    background-color: #212425;
+    /*overflow: hidden; 解决塌陷*/
+    margin-top: 100px;
+    text-align: center;
+    /*解决塌陷*/
+    border: 1px solid #212425;
+}
+.grid {
+    margin-top: 50px;
+    color: white;
+}
+.grid a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 0 5px;
+}
+.grid a:hover {
+    color: #2288f6;
+    text-decoration: underline;
+}
+.parenter p{
+    text-align: center;
+    color: white;
+    margin-top: 30px;
 }
