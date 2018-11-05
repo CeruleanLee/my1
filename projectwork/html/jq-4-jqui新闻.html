@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>3</title>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+.drag-wrapper{
+    width: 400px;
+    margin: 50px auto;
+}
+        .drag-bar{
+            height: 40px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 40px;
+            text-align: center;
+            background-color: yellowgreen;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            cursor: move;
+        }
+        .resize-item{
+            height: 211px;
+            border: 1px solid red;
+        }
+        .sort-wrapper{
+            height: 100%;
+            overflow: hidden;
+        }
+        .sort-item{
+            list-style: none;
+        padding-top: 10px}
+        .sort-item li{
+            height: 40px;
+            line-height: 40px;
+            padding-left: 20px;
+            cursor: pointer;
+
+        }
+        .sort-item li:hover{
+            background-color: dodgerblue;
+
+        }
+
+    </style>
+
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+
+
+</head>
+<body>
+<div class="nav">
+    <div class="drag-wrapper">
+        <div class="drag-bar">可以推拽 排序 变形的列表</div>
+        <div class="sort-wrapper">
+            <div class="resize-item">
+                <ul class="sort-item">
+                    <li>第1</li>
+                    <li>第2</li>
+                    <li>第3</li>
+                    <li>第4</li>
+                    <li>第5</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(function () {
+      $(".drag-wrapper").draggable({
+          handle:".drag-bar"
+      });
+      $(".sort-item").sortable({
+          opacity:0.3
+      });
+      $(".resize-item").resizable({
+          handles:"s"
+      });
+    });
+
+</script>
+</body>
+</html>

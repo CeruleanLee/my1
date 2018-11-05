@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        .comment li {
+            display: inline-block;
+            float: left;
+            list-style: none;
+            font-size: 50px;
+            color: dodgerblue;
+            margin-left: 20px;
+        }
+    </style>
+
+    <script src="../js/jquery-1.12.4.min.js"></script>
+
+
+</head>
+<body>
+<div id="nav">
+    <ul class="comment">
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+</div>
+<script>
+    $(function () {
+        var kong = "☆";
+        var shi = "★";
+        //鼠标进入时改变颜色 让它前面的也变色 后面的便空心
+        //鼠标离开则全部清空
+        //点击时 给被点击的那个添加一个标记  这里用的类  然后再鼠标离开时根据标记找到当前的之前的之后的
+        $(".comment li").on("mouseenter", function (e) {
+            $(this).text(shi).prevAll().text(shi);
+            $(this).nextAll().text(kong);
+            /*链式*/
+            $(this).text(shi).prevAll().text(shi).end().nextAll().text(kong);
+        })
+        $(".comment").on("mouseleave", function () {
+            $(this).children().text(kong);
+            $("li.current").text(shi).prevAll().text(shi);
+        })
+
+        // $(".comment li").on("mouseleave", function (e) {
+        //     // $(this).text(shi).prevAll().text(shi);
+        //     $(this).nextAll().text(kong);
+        //
+        // })
+        $(".comment li").on("click", function (e) {
+            // $(this).text(shi).prevAll().text(shi);
+            $(this).addClass("current").siblings().removeClass("current");
+        })
+
+
+    });
+
+</script>
+</body>
+</html>
