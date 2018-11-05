@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>my test</title>
+    <!--引入vue-->
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="D:\soft\apache-tomcat-9.0.12-windows-x64\apache-tomcat-9.0.12\webapps\myapp\my1\css\common.css">
+    <script src="D:\soft\apache-tomcat-9.0.12-windows-x64\apache-tomcat-9.0.12\webapps\myapp\my1\js\jquery-1.12.4.js"></script>
+
+    <!--&lt;!&ndash; 生产环境版本，优化了尺寸和速度 &ndash;&gt;-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+        * {
+            font-size: 30px;
+        }
+        a {
+            color: #0099cc;
+        }
+
+        div {
+            border: 1px solid #87CEFA;
+            margin: 15px 8px;
+            padding: 5px;
+            background-color: rgba(135, 206, 250, 0.2);
+        }
+
+        p {
+            font-size: xx-large;
+        }
+
+        .greyp {
+            color: grey;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+<b class="greyp"> *vue 不支持IE8及以下版本，但支持兼容所有ECMA5的浏览器</b>
+
+<p>
+    使用：1. 创建Vue 实例
+    <br> 2. 由其响应式的特点，当对象呗加入到vue的实例后，任何变动都是双向的 可以直接用vm.出来起属性
+    <br>注意：
+    <br>1.只有在被创建时穿进去的data对象才是响应式的，如果之后新增属性什么的不会触发响应,因此在添加对象的时候最好给这些可能之后会用到的值添加初始值)
+    <br>2.另外 <a href="#freeze">obj.freeze()</a>;也会组织vue修改现有的对象，让其无法追踪响应
+    <br>3.vue 也暴露实例的属性和方法，以$为前缀与用户定义的属性进行区分 <a href="https://cn.vuejs.org/v2/api/#%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">查看详情api</a>&nbsp;&nbsp;<a
+        href="#vueProp">举例</a>
+<pre>
+
+
+    var vm=new Vue({
+    //选项对象
+    });
+</pre>
+
+</p>
+1.绑定元素：可以绑定到DOM文本、特性、结构
+<li>
+    插值
+
+</li>
+<li>指令的方式
+    <br>
+    add attr like 'v-bind:title="sometext"'
+</li>
+
+<div id="firstVue">
+    {{msg}}
+
+</div>
+
+
+<div id="vue2">
+    第二种方式：
+    <span v-bind:title="msg2">
+    </span>
+</div>
+<script type="text/javascript">
+    var firstVue = new Vue({
+        el: '#firstVue',
+        data: {
+            msg: 'hey girl~'
+        }
+    });
+    firstVue.msg = 'i have edit this msg';
+    var vue2 = new Vue({
+        el: '#vue2',
+        data: {
+            msg2: '加载时间' + new Date().toLocaleTimeString()
+        }
+    });
+</script>
+<br>
+2. 显示与隐藏
+<p>
+    v-if --> true/false
+</p>
+<div id="app3">
+    <p v-if="visible">
+        now you have seen me!
+    </p>
+
+</div>
+<script type="text/javascript">
+    var app3 = new Vue({
+        el: "#app3",
+        data: {
+            visible: true
+        }
+    });
+    app3.visible = false;
+</script>
+<br>
+3. 列表循环
+<p>
+    v-for='item in list'
+</p>
+<div id="app4">
+    <p v-for="item in list">
+        {{item.name}}
+    </p>
+
+</div>
+<script type="text/javascript">
+    var app4 = new Vue({
+            el: "#app4",
+            data: {
+                list: [
+                    {name: '张三', age: 14},
+                    {name: '王小二', age: 15},
+                    {name: '陈小四', age: 20}
+                ]
+            }
+        }
+        )
+    ;
+    app4.list.push({name: '胡小五', age: 90});
+</script>
+<br>
+4. 事件监听器 v-on
+<p>
+    v-on='item in list'
+</p>
+<div id="app5">
+    <p>
+        {{name}}
+    </p>
+    <button v-on:click='reverseMsg'>
+        逆转文字
+    </button>
+
+</div>
+<script type="text/javascript">
+    var app5 = new Vue({
+            el: "#app5",
+            data: {
+                name: 'abcdefg'
+            },
+            method: {
+                reverseMsg: function () {
+                    this.name = this.name.split('').reverse().join('');
+
+                }
+
+            }
+        }
+        )
+    ;
+    // app4.list.push({name: '胡小五', age: 90});
+</script>
+<br>
+5. 组件化 ，类似于自定义元素 与angular1 也有相似之处。 提供跨组件数据流，自定义事件通信，以及构建工具集成
+<p>
+    1.首先定义一个组件，并在vue中注册 <br>
+    2.构建组件模板 <br>
+    3.使用 <br>
+</p>
+<div id="app6">
+    <ul>
+        <!--3. 使用-->
+        <todo-item v-for="item in list" v-bind:todo="item" v-bind:key="item.id">
+        </todo-item>
+    </ul>
+</div>
+<script type="text/javascript">
+    //    1.首先定义一个组件，并在vue中注册
+    Vue.component('todo-item', {
+        //props 是一个自定义特性 命名为todo   这样使todo-item这个组件可以接收一个props
+        props: ['todo'],
+        //2.构建组件模板
+        template: '<li>{{todo.name}}</li>'
+    });
+
+    var app6 = new Vue({
+            el: "#app6",
+            data: {
+                list: [
+                    {id: 1, name: '张三', age: 14},
+                    {id: 2, name: '王小二', age: 15},
+                    {id: 3, name: '陈小四', age: 20}
+                ]
+            },
+            method: {
+                reverseMsg: function () {
+                    this.name = this.name.split('').reverse().join('');
+
+                }
+
+            }
+        }
+        )
+    ;
+    // app4.list.push({name: '胡小五', age: 90});
+</script>
+
+<div id="div0">
+    <a href="">a1</a><a href="">a2</a>
+    <a href="">a3</a><a href="">a4</a>
+    <a href="">a5</a><a href="">a6</a>
+    <a href="">a7</a><a href="">a8</a>
+</div>
+
+<script>
+    $(function () {
+        $("a").on('tap',function () {
+            console.log("-----------");
+            alert("OK?");
+        });
+    })
+
+</script>
+
+
+
+
+
+<div id="freeze">
+    <hr>
+    <hr>
+    <hr>
+    <p>{{name}}</p>
+
+    <!-- onclick="changename()-->
+    <button v-on:click="name='王五'">
+        click to change
+    </button>
+</div>
+<script type="text/javascript">
+    var freezeObj = new Object();
+    freezeObj.name = "张三";
+    //阻断响应
+    Object.freeze(freezeObj);
+
+    var vmFreeze = new Vue({
+        el: "#freeze",
+        data: freezeObj
+    });
+
+    console.log("--->obj-" + freezeObj.name);
+    console.log("--->vm-" + vmFreeze.name);
+
+    function changename() {
+        vmFreeze.name = "王二麻子";
+        console.log("--->change obj-" + freezeObj.name);
+        console.log("--->change vm-" + vmFreeze.name);
+    }
+
+</script>
+<!--演示vue的实例属和方法-->
+<div id="vueProp">
+    <p>{{title}}</p>
+
+</div>
+<script type="text/javascript">
+    var news = new Object();
+    news.title = "今天周五";
+
+    var vmNews = new Vue({
+        el: "#vueProp",
+        data: news
+    });
+
+    console.log("-->data->"+vmNews.$data===news);
+    console.log("-->$data->"+JSON.stringify(vmNews.$data));
+    console.log("-->equal->");
+
+
+</script>
+</body>
+</html>

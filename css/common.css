@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*英文和数字强行换行*/
+h3,h4,p{
+    word-break: break-all;word-wrap: break-word;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}

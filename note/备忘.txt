@@ -44,16 +44,21 @@ G:\Awork\ABuglyStockOperation0820 跑通
 core 抽出相册部分
 
 push  to   genymotion
+E:\sdk\platform-tools
 android sdk –plateform-tools文件夹的目录下打开命令行窗口 push
 adb push G:\Awork\ABuglyStockOperation0820\app\build\bakApk\app-0822-17-10-52\somp_scyd_cs0820_v\app-somp_scyd_cs0820_v-release.apk /sdcard/Download/
 
-adb push C:\Users\admin\Desktop\system\s2.apk /sdcard/Download/
+adb push C:\Users\admin\Desktop\ccc.apk /sdcard/Download/
+http://192.168.81.102:8080/myapp/cc.apk
 
-
-adb push G:\Alyt\Demo\ws\IonicApp\m3\myApp\platforms\android\app\build\outputs\apk\debug\app-debug.apk /sdcard/Download/
+adb push G:\Awork\HBuilder Work\QdzcApp\unpackage\release\hb.apk /sdcard/Download/
 
 
 adb push G:\Alyt\Demo\ws\IonicApp\m3\myown\myApp\platforms\android\app\build\outputs\apk\debug\app-debug.apk /sdcard/Download/
+
+
+adb push C:\Users\admin\Desktop\h.apk /sdcard/Download/
+
 
 
 

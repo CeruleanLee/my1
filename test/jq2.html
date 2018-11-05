@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0 10px;
+            padding: 0;
+        }
+
+        ul,li {
+            list-style: none; /* 去掉ul前面的符号 */
+        }
+
+      #div0  a {
+            text-decoration: none;
+          display: block;
+            width: 55px;
+            height: 55px;
+          font-size: 25px;
+          color: #589585;
+          /*background-color: lightblue;*/
+        }
+
+    </style>
+    <script src="../projectwork/js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+
+<div id="div0">
+    <li><a href="">a-1</a></li>
+    <li><a href="">a-2</a></li>
+    <li><a href="">a-3</a></li>
+    <li><a href="">a-4</a></li>
+    <li><a href="">a-5</a></li>
+    <li><a href="">a-6</a></li>
+    <li><a href="">a-7</a></li>
+    <li><a href="">a-8</a></li>
+</div>
+
+<script>
+    $(function () {
+        $("#div0 a").click(function () {
+            $(this).addEventListener('play',function () {
+
+            })
+            console.log("-----------");
+            alert($(this).html());
+        });
+    })
+
+</script>
+
+</body>
+</html>
