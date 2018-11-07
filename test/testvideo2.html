@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+    
+<head>
+            
+    <meta charset="UTF-8">
+            <title>视频播放器</title>
+            
+    <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+
+            
+    <style>
+                    #im {
+            width: 30px;
+              height: 20px;
+             position: relative;
+            left: 70px;
+             top: 100px;
+        }
+
+                    
+                    #sy {
+             width: 30px;
+             height: 20px;
+             position: relative;
+            left: 100px;
+             bottom: -70px;
+        }
+
+                    
+                    #bb {
+             position: relative;
+             left: 140px;
+             top: 140px;
+        }
+
+                </style>
+        
+</head>
+
+    
+<body>
+
+        
+<video src="http://192.168.80.102:8080/myapp/video/4.mp4" id="bb"></video>
+        <img id="sy" src="../../img/Nomus.png" onclick="mute()"/>
+        <img id="im" src="../img/play.png" onclick="start1()"/>
+        
+<script>
+    var bb = document.getElementById("bb")
+    var ii = document.getElementById("im");
+    var sy = document.getElementById("sy");
+
+    function start1() {
+
+        var f = bb.paused;
+
+        if (f) {
+            bb.play()
+            ii.setAttribute("src", "../../img/play.png");
+        } else {
+            var ff = document.getElementById("im")
+            bb.pause()
+            ii.setAttribute("src", "../../img/pause.png");
+
+        }
+
+    }
+
+    function mute() {
+        var g = bb.muted;
+
+        if (g) {
+            console.log("禁用声音");
+            bb.muted = false;
+            sy.setAttribute("src", "../../img/Nomus.png");
+        } else {
+
+            //                    console.log("启用声音");
+            bb.muted = true;
+            sy.setAttribute("src", "../../img/mus.png");
+        }
+    }
+
+    start1();
+    mute();
+</script>
+    
+</body>
+
+</html>

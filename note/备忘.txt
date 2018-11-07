@@ -43,15 +43,19 @@ G:\Awork\ABuglyStockOperation0820 跑通
  集成tinker ing  未配置完整tinker-support.gradle  
 core 抽出相册部分
 
+
+.\adb connect 192.168.89.102:5555
+
+
 push  to   genymotion
 E:\sdk\platform-tools
 android sdk –plateform-tools文件夹的目录下打开命令行窗口 push
 adb push G:\Awork\ABuglyStockOperation0820\app\build\bakApk\app-0822-17-10-52\somp_scyd_cs0820_v\app-somp_scyd_cs0820_v-release.apk /sdcard/Download/
 
-adb push C:\Users\admin\Desktop\ccc.apk /sdcard/Download/
+adb push C:\Users\admin\Desktop\cdqd_11061508.apk /sdcard/Download/
 http://192.168.81.102:8080/myapp/cc.apk
 
-adb push G:\Awork\HBuilder Work\QdzcApp\unpackage\release\hb.apk /sdcard/Download/
+adb push C:\Users\admin\Desktop\tim.apk /sdcard/Download/
 
 
 adb push G:\Alyt\Demo\ws\IonicApp\m3\myown\myApp\platforms\android\app\build\outputs\apk\debug\app-debug.apk /sdcard/Download/
