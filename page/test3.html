@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>test3</title>
     <style>
-        input{
+        input {
             font-size: 25px;
         }
     </style>
@@ -12,12 +12,18 @@
 <body>
 
 <div>
+    <audio id="../img/2.mp3" width="100%" height="100px" controls="controls"
+           style="margin: 30px 0;width: 85%;height: 50px;line-height: 50px;border: 1px solid #e6e6e7;background-color: #f7f7f8;border-radius: 1px;"
+           src="' + audiosrc + '">
+        <source  src="../img/amramr.amr"></source>
+    </audio>
+    <audio src="../img/2.mp3" autoplay style="height: 200px;width: 100%"></audio>
     <form id="form" enctype="multipart/form-data" method="post" onsubmit="return submit() ">
         <input type="text" id="name" name="name">
         <br>
         <input type="password" id="psd" name="password">
         <br>
-        <input type="file"  >
+        <input type="file">
         <br>
 
         <button type="submit">commit
@@ -31,7 +37,11 @@
         psd = toMD5(psd);
 
     }
-
+    var str='{"created":"2018-09-10 11:58:56","creater":"cdadmin","ext2":"5","extMap":{"rowValid":"有效","authentication_":"true","org":{"childs":0,"created":"2018-09-05 16:02:02","creater":"cdsgly1","ext1":"CD"}';
+    var obj= eval('('+str+')');
+    console.log('--->' +  $.parseJSON(str));
+    console.log('--->' + str);
+    console.log('--->' + obj.created);
 
 </script>
 
