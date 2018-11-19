@@ -7,6 +7,7 @@ var RongIMLib;
         * 初始化声音库
         */
         RongIMVoice.init = function () {
+            console.log('-RongIMVoice.init->');
             if (this.isIE) {
                 var div = document.createElement("div");
                 div.setAttribute("id", "flashContent");
@@ -31,7 +32,8 @@ var RongIMLib;
                 }, 200);
             }
             else {
-                var list = ["http://cdn.ronghub.com/pcmdata-2.0.0.min.js", "http://cdn.ronghub.com/libamr-2.0.1.min.js"];
+                var list = ["pcmdata-2.0.0.min.js", "libamr-2.0.1.min.js"];
+                // var list = ["http://cdn.ronghub.com/pcmdata-2.0.0.min.js", "http://cdn.ronghub.com/libamr-2.0.1.min.js"];
                 for (var i = 0, len = list.length; i < len; i++) {
                     var script = document.createElement("script");
                     script.src = list[i];
@@ -46,12 +48,16 @@ var RongIMLib;
         * @param duration {number} 播放大概时长 用 data.length / 1024
         */
         RongIMVoice.play = function (data, duration) {
+            console.log("-RongIMVoice play->");
+
             this.checkInit("play");
             var me = this;
             if (me.isIE) {
                 me.thisMovie().doAction("init", data);
             }
             else {
+                console.log('---play init----');
+
                 me.palyVoice(data);
                 me.onCompleted(duration);
             }
@@ -91,6 +97,7 @@ var RongIMLib;
             var timer = setInterval(function () {
                 count++;
                 me.onprogress();
+                console.log('-->'+count);
                 if (count >= duration) {
                     clearInterval(timer);
                 }
@@ -127,8 +134,10 @@ var RongIMLib;
                 var samples = new AMR({
                     benchmark: true
                 }).decode(reader.result);
+                console.log('---play----');
                 me.element = AMR.util.play(samples);
             };
+            console.log('---play');
             reader.readAsBinaryString(blob);
         };
         RongIMVoice.isIE = /Trident/.test(navigator.userAgent);

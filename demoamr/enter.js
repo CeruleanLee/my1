@@ -1,6 +1,6 @@
 
 function handleFileSelect(f, isTypedArray) {
-    var reader = new FileReader();// 文件阅读器
+    var reader = new FileReader();
     reader.onload = (function(file) {
         return function(e) {
             var extension = file.name.split(".")[1];
