@@ -6,44 +6,24 @@
     <!--引入vue-->
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="D:\soft\apache-tomcat-9.0.12-windows-x64\apache-tomcat-9.0.12\webapps\myapp\my1\css\common.css">
-    <script src="D:\soft\apache-tomcat-9.0.12-windows-x64\apache-tomcat-9.0.12\webapps\myapp\my1\js\jquery-1.12.4.js"></script>
-
+    <link rel="stylesheet" href="../../css/common.css">
+    <script src="../../js/jquery-1.12.4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <link rel="stylesheet" href="../css/vuemy.css">
     <!--&lt;!&ndash; 生产环境版本，优化了尺寸和速度 &ndash;&gt;-->
     <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
     <style>
-        * {
-            font-size: 30px;
-        }
-        a {
-            color: #0099cc;
-        }
 
-        div {
-            border: 1px solid #87CEFA;
-            margin: 15px 8px;
-            padding: 5px;
-            background-color: rgba(135, 206, 250, 0.2);
-        }
-
-        p {
-            font-size: xx-large;
-        }
-
-        .greyp {
-            color: grey;
-        }
 
     </style>
 </head>
 <body>
 
 
-
 <b class="greyp"> *vue 不支持IE8及以下版本，但支持兼容所有ECMA5的浏览器</b>
 
 <p>
-    使用：1. 创建Vue 实例
+    >>使用：1. 创建Vue 实例
     <br> 2. 由其响应式的特点，当对象呗加入到vue的实例后，任何变动都是双向的 可以直接用vm.出来起属性
     <br>注意：
     <br>1.只有在被创建时穿进去的data对象才是响应式的，如果之后新增属性什么的不会触发响应,因此在添加对象的时候最好给这些可能之后会用到的值添加初始值)
@@ -52,13 +32,92 @@
         href="#vueProp">举例</a>
 <pre>
 
-
     var vm=new Vue({
-    //选项对象
-    });
+    传入<a href="https://cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D%AE">选项对象</a>
+    },
+     created: function () {
+    //生命周期 created钩子 `this` 指向 vm 实例
+    console.log('a is: ' + this.a)
+  });
+</pre>
+<li>>>生命周期</li>
+<p>每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM
+    等。同时在这个过程中也会运行一些叫做生命周期钩子的函数，这给了用户在不同阶段添加自己的代码的机会。</p>
+<img src="../img/vuelifecycle.png" alt="lifecycle.png" width="1200" height="3039">
+
+<li>>>模板语法</li>
+<p>使用mustache语法，（双大括号）</p>
+<p>因其响应式特点，双向变动，如果只希望执行一次插值，使用v-once 指令 <a href="#directive_once">sample</a>
+</p>
+<p>使用模板语法进行插值，双大括号会把数据解释为普通文本，而非html代码，如果需要输出html,需要使用 <span class="emphasizeTxt">v-html指令</span> <a
+        href="#directive_html">sample</a>
+</p>
+<p>Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令</p>
+<li>>>指令</li>
+<p>带有v- 前缀的特殊特性</p>
+<p>值预期是单个js表达式（except v-for）</p>
+<p>职责：当表达式的值改变时，响应式的作用于DOM</p>
+<p>参数：在指令名称之后以冒号标识，eg:</p>
+<pre>
+    &lt;;a v-bind:href="http://www.baidu.com"&gt;click me&lt;/a&gt;
+    说明：以上表达式:href是参数， 让v-bind指令将该元素的href属性与其值绑定起来
+    &lt;a v-on:click="dosomething"&gt;ye click me again&lt;/a&gt;
+    说明：将事件dosomething 与事件click绑定
+</pre>
+<p>修饰符：以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，.prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault()</p>
+<p>缩写：对常用指令v-bind 和 v-on 提供了简写：</p>
+<pre>
+    &lt;a v-binf:href="http://www.baidu.com"&gt;baidu &lt;/a&gt;
+    简写：
+    &lt;a :href="http://www.baidu.com"&gt;baidu &lt;/a&gt;
+
+    &lt;a v-on:click="turnAnywhere"&gt; &lt;/a&gt;
+    简写：
+    &lt;a @click="turnAnywhere"&gt; &lt;/a&gt;
 </pre>
 
-</p>
+<li>>>class 绑定</li>
+<p>·对象语法</p>
+<pre>
+
+    &lt;div class="static" v-bind:class="{active:isActive,'text-error':hasError}"&gt; &lt;/div>
+    or:
+    &lt;div class="static" v-bind:class="classObj"&gt; &lt;/div&gt;
+        new Vue(
+                data:{
+                    classObj:{//here
+                        active:true,
+                        'text-error':false
+                    }
+                }
+        )
+
+    甚至可以绑定计算属性
+      new Vue(
+                data:{
+                    active:true,
+                    'text-error':null
+                },
+                counputed:{
+                    classObj:function(){
+                         return {
+                                active:this.isActive && !this.error,
+                                'text-danger': this.error && this.error.type === 'fatal'
+                            }
+                    }
+                 }
+        )
+
+    <p class="smallerp greyp">ps:-> v-bind:class与普通class可以共存</p>
+
+
+</pre>
+
+
+<br>
+
+<hr>
+<hr>
 1.绑定元素：可以绑定到DOM文本、特性、结构
 <li>
     插值
@@ -81,6 +140,11 @@
     </span>
 </div>
 <script type="text/javascript">
+
+    var $jq = jQuery.noConflict(true);
+    console.log($jq.fn.jquery);
+
+
     var firstVue = new Vue({
         el: '#firstVue',
         data: {
@@ -226,17 +290,14 @@
 </div>
 
 <script>
-    $(function () {
-        $("a").on('tap',function () {
+    $jq(function () {
+        $jq("a").on('tap', function () {
             console.log("-----------");
             alert("OK?");
         });
     })
 
 </script>
-
-
-
 
 
 <div id="freeze">
@@ -272,9 +333,10 @@
 
 </script>
 <!--演示vue的实例属和方法-->
+<p>·演示vue的实例属和方法</p>
 <div id="vueProp">
     <p>{{title}}</p>
-
+    <input v-model="title" type="text">
 </div>
 <script type="text/javascript">
     var news = new Object();
@@ -284,12 +346,189 @@
         el: "#vueProp",
         data: news
     });
+    console.log("-->data->" + vmNews.$data === news);
+    console.log("-->$data->" + JSON.stringify(vmNews.$data));
+    console.log("-->equal->" + vmNews.$el === document.getElementById('vueProp'));
+    vmNews.$watch('title', function (newValue, oldValue) {
+        console.log("-->newValue->" + newValue + "-oldValue-->" + oldValue);
 
-    console.log("-->data->"+vmNews.$data===news);
-    console.log("-->$data->"+JSON.stringify(vmNews.$data));
-    console.log("-->equal->");
 
-
+    })
 </script>
+<p>·演示v-once</p>
+<div id="directive_once">
+    <span v-once>{{directive_once}} </span>
+</div>
+<script type="text/javascript">
+
+
+    var directive_once = new Vue({
+            el: "#directive_once",
+            data: {
+                directive_once: 'hey'
+            }
+        }
+        )
+    ;
+</script>
+<p>·演示v-html</p>
+<div id="directive_html">
+    <p>use mustache : {{rawHtml}}</p>
+    <p>use v-html : <span v-html="rawHtml"></span></p>
+</div>
+<script type="text/javascript">
+    var directive_html = new Vue({
+            el: "#directive_html",
+            data: function () {
+                return {
+                    rawHtml: '<span style="color: red">this should be red </span>'
+                }
+            }
+        }
+        )
+    ;
+</script>
+<p>·演示计算属性</p>
+<div id="directive_compute">
+    <p>original data: {{msg}}</p>
+    <p>computed data : {{reverseData}}></span></p>
+
+    <p>tips:</p>
+    <p>计算属性和方法：可以实现同样的结果，两者区别：
+        <br>
+        a.计算属性是基于他们的依赖进行缓存的，只有在相关依赖发生改变时才会重新求值，也可以说，只要其依赖的值没有发生改变，那么访问计算属性会
+        立即返回之前的计算结果，不会重新执行函数，不是响应式依赖
+        <br>
+        b.而调用方法，每一次都会执行函数</p>
+</div>
+<script type="text/javascript">
+    var directive_compute = new Vue({
+            el: "#directive_compute",
+            data: {
+                msg: 'Good'
+            },
+            computed: {//定义为计算属性
+                reverseData: function () {
+                    return this.msg.split('').reverse().join('');
+                }
+            },
+            method: {
+                reverseMsg: function () {//定义为方法
+                    this.name = this.msg.split('').reverse().join('');
+
+                }
+            }
+        }
+        )
+    ;
+
+    //提供的getter函数
+    console.log(directive_compute.reverseData);
+</script>
+
+
+<p>·演示计算属性和侦听属性-使用侦听属性</p>
+<div id="directive_watch">
+    <p>{{fullName}}</p>
+    <input v-model="firstName" type="text">
+    <input v-model="lastName" type="text">
+</div>
+<script type="text/javascript">
+    var nameObj = new Object();
+    nameObj.firstName = "Jan";
+    nameObj.lastName = "Jim";
+    nameObj.fullName = "Jan Jim";
+
+    var vmNews = new Vue({
+        el: "#directive_watch",
+        data: nameObj
+    });
+    //使用侦听属性
+    vmNews.$watch('firstName', function (val) {
+        this.fullName = val + " " + this.lastName;
+    })
+    vmNews.$watch('lastName', function (val) {
+        this.fullName = this.firstName + " " + val;
+    })
+</script>
+<p>·演示计算属性和侦听属性2-使用计算属性-只有当依赖属性改变时才会改变</p>
+<p class="greyp smallerp">
+    演示添加setter 和getter
+</p>
+
+<div id="directive_compute_watch">
+    <p>{{fullName2}}</p>
+    <input v-model="firstName2" type="text">
+    <input v-model="lastName2" type="text">
+</div>
+<script type="text/javascript">
+    var nameObj2 = new Object();
+    nameObj2.firstName2 = "Jan";
+    nameObj2.lastName2 = "Jim";
+    var vmnameObj2 = new Vue({
+        el: "#directive_compute_watch",
+        data: nameObj2,
+        computed: {
+            fullName2: {
+                get: function () {
+                    return this.firstName2 + " " + this.lastName2;
+                },
+                set: function (fullname) {
+                    var namelist = fullname.split(' ');
+                    this.firstName2 = namelist[0];
+                    this.lastName2 = namelist[namelist.length - 1];
+                }
+            }
+        }
+    });
+    vmnameObj2.firstName2 = 'kate';
+    vmnameObj2.lastName2 = 'Amy';
+    vmnameObj2.fullName2 = 'Jhon Doe';
+</script>
+<p>·演示侦听属性</p>
+<div id="directive_v_watch">
+    <p>you can ask me a question:</p>
+    <input v-model="question" type="text">
+    <p>{{answer}}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script type="text/javascript">
+    var vmquestion = new Vue({
+            el: "#directive_v_watch",
+            data: {
+                question: '',
+                answer: 'I cannot give you an answer until you ask a question'
+            },
+            watch: {
+                //question 变化时 函数运行
+                question: function (newVal, oldVal) {
+                    this.answer = 'waiting for you to stop typing...';
+
+                }
+            },
+            method: {
+                getAnswer: function () {
+                    if (this.question.indexOf('?') === -1) {
+                        this.answer = 'your question should contain a question mark(?)';
+                        return;
+                    } else {
+                        this.answer = 'yes';
+                    }
+
+                }
+            },
+            // created: {
+            //     // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
+            //     // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
+            //     // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
+            //     // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，
+            //     // 请参考：https://lodash.com/docs#debounce
+            //     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);}
+        })
+    ;
+</script>
+
+
 </body>
 </html>

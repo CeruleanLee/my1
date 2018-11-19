@@ -1,0 +1,43 @@
+* {
+    font-size: 30px;
+}
+body{
+    padding: 100px 30px;
+
+}
+
+a {
+    color: #0099cc;
+}
+
+div {
+    border: 1px solid #87CEFA;
+    margin: 15px 8px;
+    padding: 5px;
+    background-color: rgba(135, 206, 250, 0.2);
+}
+
+p {
+    font-size: xx-large;
+}
+
+.greyp {
+    color: grey;
+}
+.smallerp {
+    font-size: 20px;
+
+}
+
+.emphasizeTxt{
+    color: midnightblue;
+}
+
+input{
+    display: inline-block;
+    height: 80px;
+    line-height: 80px;
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    padding: 5px;
+}
