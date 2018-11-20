@@ -98,7 +98,7 @@
                     active:true,
                     'text-error':null
                 },
-                counputed:{
+                computed:{
                     classObj:function(){
                          return {
                                 active:this.isActive && !this.error,
@@ -112,6 +112,38 @@
 
 
 </pre>
+<p>·数组语法</p>
+<pre>
+    &lt;div class="static" v-bind:class="[activeClass,errorClass]"&gt; &lt;/div>
+    new Vue(
+          data:{
+              activeClass:'active',
+              errorClass:'text-danger'
+              }
+    )
+    上述会被渲染为：
+    &lt;div class="active text-danger"&gt; &lt;/div&gt;
+    <br>
+    ps:数组被可用三元表达式，可用对象语法
+
+</pre>
+
+<p>·在组件上使用</p>
+<p>在组件中添加的class 使用后这些类会被添加到跟节点的class里面，不会覆盖已存在的类，共存 <a href="#class_component">sample</a></p>
+<li>>>css 绑定</li>
+<li>>>条件渲染 v-if</li>
+<p class="greyp"><a href="#vif">sample</a></p>
+<p>·与v-show 的比较</p>
+<div class="greyDiv">
+    <p class="smallerp greyp">>v-show:与v-if 用法相同,但v-show 会始终被渲染在DOM中，只是简单的切换css的display属性；而且v-show不支持&lt;template&gt; 元素和v-else</p>
+    <p class="smallerp greyp">>v-if 会确保在切换过程中条件块内的事件监听器和子组件适当低被销毁和重建，在渲染的时候，如果出事条件为假，那么就什么也不做，知道条件第一次变为真时，才会开始渲染条件块。相比之下，v-show就简单得多，不管初始条件是什么都会渲染，其后只是简单的基于css进行切换。<br>
+        因此v-if会有更高的切换开销，v-show则有更高的初始开销，使用时依条件使用</p>
+
+
+
+</div>
+
+
 
 
 <br>
@@ -527,6 +559,121 @@
             //     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);}
         })
     ;
+</script>
+<p>·演示组件中使用class</p>
+
+<div id="class_component">
+    <ul>
+        <!--3. 使用-->
+        <demo_component v-for="item in list" v-bind:todo="item" v-bind:key="item.id" class="smallerp">
+        </demo_component>
+    </ul>
+</div>
+<script type="text/javascript">
+    //    1.首先定义一个组件，并在vue中注册
+    Vue.component('demo_component', {
+        //props 是一个自定义特性 命名为todo   这样使todo-item这个组件可以接收一个props
+        props: ['todo'],
+        //2.构建组件模板
+        template: '<li class="greyp">{{todo.name}}</li>'
+    });
+
+    var demoComponent = new Vue({
+            el: "#class_component",
+            data: {
+                list: [
+                    {id: 1, name: '张三', age: 14},
+                    {id: 2, name: '王小二', age: 15},
+                    {id: 3, name: '陈小四', age: 20}
+                ]
+            }
+        }
+        )
+    ;
+</script>
+<p>·演示v-if & v-else & v-else-if </p>
+<P CLASS="greyp smallerp">使用有顺序，紧跟前一个使用</P>
+<div id="vif">
+    <!--<p v-if="Math.random() > 0.5">-->
+    <p v-if="visible">
+        Now you see me
+    </p>
+    <p v-else>
+        Now you don't
+    </p>
+    <p v-if="type==='A'">
+        type A
+    </p>
+    <p v-else-if="type==='B'">
+        TYPE b
+    </p>
+    <p v-else-if="type==='C'">
+        TYPE C
+    </p>
+    <p v-else>
+        TYPE D
+    </p>
+</div>
+<script type="text/javascript">
+    var vif = new Vue({
+        el: "#vif",
+        data: {
+            // visible: true
+            visible: Math.random() > 0.5,
+            type: 'C'
+        }
+    });
+    console.log('-visible->' + vif.visible);
+    // vif.visible = false;
+    vif.type = 'E';
+</script>
+<p>·演示v-if -元素的复用 </p>
+<div id="vif-key">
+    <!--<template> 元素当做不可见的包裹元素，并在上面使用 v-if。最终的渲染结果将不包含 <template> 元素。-->
+    <!--不添加key的情况下 input将不会清楚其中的内容，仅仅替换placeholder 复用已有元素，使渲染变快 添加key之后 就是独立的，不会被复用-->
+    <template v-if="type==='name'">
+        <label>name</label>
+        <input type="text" placeholder="please enter your name" >
+    </template>
+    <template v-else-if="type==='email'">
+        <label>email</label>
+        <input type="text" placeholder="please enter your email" >
+    </template>
+    <!--put key here -->
+    <template v-else-if="type==='phone'">
+        <label>phone</label>
+        <input type="text" placeholder="please enter your phone" key="key_phone">
+    </template>
+    <br>
+    <button id="btn">
+        click to change
+    </button>
+</div>
+<script type="text/javascript">
+    var vifKey = new Vue({
+        el: "#vif-key",
+        data: {
+            type: 'phone'
+        }
+    });
+    console.log('-visible->' + vifKey.type);
+    // vif.visible = false;
+    // vif.type = 'E';
+    $jq('#btn').click(function () {
+        switch (vifKey.type) {
+            case 'email':
+                vifKey.type = 'name';
+                break;
+            case 'phone':
+                vifKey.type = 'email';
+                break;
+            case 'name':
+                vifKey.type = 'phone';
+                break;
+        }
+    })
+
+
 </script>
 
 
